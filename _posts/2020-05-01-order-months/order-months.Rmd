@@ -1,0 +1,91 @@
+---
+title: "Order Months"
+description: |
+  Produce a vector of month names ending with the current month.
+author:
+  - name: Jeremy Allen
+    url: https://jeremydata.com
+date: 05-01-2020
+preview: order_months.png
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## The last 12 months with order_months()
+
+I frequently have to make tables or plots of events that "happened in the last 12 months." I like to generate a character vector of month names for the last 12 months which I can then use for ordered factor levels, factor labels, column names, or x-axis labels.
+
+This helper function will produce a character vector of names of the last 12 months ending either at the current month or a given month. The current month or given month will be the last element in the vector, with the preceding 11 months before it.
+
+If no month number is given for x, the current month is used. Given months must be given as a number. Month names can be returned as abbreviated or full names. Set `label = "abb"` or `label = "names"`. X must be 1-12.
+
+## Remember, the current or given month is always at the end of the vector!
+
+```{r function, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+order_months <- function(x = NULL, label = "abb") {
+  
+  # This function takes a given month number or the current month
+  # number and returns a character vector of the last 12 months,
+  # including current month. For example, if it is now February: 
+  # "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec" "Jan" "Feb"
+  # is returned with the current month at the end.
+  # This makes a nice x axis if you need to plot something for
+  # the "last 12 months".
+  # if x is NULL the current month is taken from Sys.Date
+  # if x is given, x must be 1-12
+  # if label is "abb", month names are abbreviated
+  # if label is "names", month names are full
+  
+  # stop if x is out of bounds
+  if(!is.null(x))
+    if(x > 12 | x < 1) stop("x must be 1-12")
+  
+  # sets of named integers using abbreviated and full month names
+  months_abb <- setNames(1:12, month.abb)
+  months_names <- setNames(1:12, month.name)
+  
+  # current month number
+  m <- as.POSIXlt(Sys.Date())$mon + 1
+  
+  # get a value for x
+  if(is.null(x)) x <- m + 1 else x <- x + 1
+  
+  # a and b components for main if
+  # if x is 1 or 12
+  a <- 1:12
+  # if x is 2 through 12
+  b <- c(
+    x:12,
+    1:(x-1)
+    )
+  
+  # main if
+  if(x == 1 | x == 13) new_order <- a else new_order <- b
+
+  # use new_order to set desired order of months
+  if(label == "abb") my_month_order <- names(months_abb[new_order])
+  if(label == "names") my_month_order <- names(months_names[new_order])
+  
+  my_month_order
+}
+```
+
+## Typical usage
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+order_months()
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+order_months(label = "names")
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+order_months(x = 5, label = "abb")
+```

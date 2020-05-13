@@ -1,0 +1,29 @@
+name: "jeremydata"
+title: "jeremydata"
+description: |
+  R programming for data analysis and data visualization
+favicon: images/favicon32x32.png
+output_dir: "docs"
+creative_commons: CC BY
+navbar:
+  logo:
+    image: images/android_chrome_192x192.png
+    href: https://jeremydata.com
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - icon: fa fa-rss
+      href: index.xml
+base_url: https://jeremydata.com
+twitter:
+  site: "@jeremy_data"
+  creator: "Jeremy Allen"
+collections:
+  posts:
+    disqus: jeremydata-com
+    share: [twitter, linkedin, facebook]
+output:
+  distill::distill_article:
+    css: styles.css

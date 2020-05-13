@@ -1,0 +1,28 @@
+---
+title: "Why"
+description: |
+  R programming for meaningful data analysis and data visualization?
+output:
+  distill::distill_article:
+    css: styles.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r image, echo=FALSE, message=FALSE, warning=FALSE, layout="l-screen-inset", paged.print=FALSE, fig.cap='image by Jeremy Allen | Copyrighted'}
+knitr::include_graphics("images/20190827_194124_JDA_180.jpg")
+```
+
+## Bio
+
+I am a self-taught R programmer, formally educated in sociology, philosophy, religion, and photography. Researchers and business leaders appreciate that I understand their needs. Software teams appreciate that I understand their needs. At that intersection I develop Shiny applications that help researchers, analysts, and decision makers create meaning from data.
+
+I started my career shortly after 9/11 as a US Army intelligence analyst focused on North Korea, which quickly shifted to researching al-Qaeda ideology, propaganda, and recruiting. This soon expanded to all associated extremist groups around the world. In 2010 I landed in Afghanistan as a defense contractor providing research support to a group of astonishingly young Army and civilian interrogators at the main US detention facility in Bagram.
+
+Disillusioned with that experience I returned to school full-time as an adult student in 2011, working occasionally as a professional photographer and commercial image retoucher. By 2016, I began teaching myself the R programming language in order to restart a career in research and analysis. The same year I began my first job as an R programmer in a technology company.
+
+## Contact
+
+Tweet me @[jeremy_data](https://twitter.com/jeremy_data)

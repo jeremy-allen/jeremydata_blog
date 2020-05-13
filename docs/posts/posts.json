@@ -1,0 +1,53 @@
+[
+  {
+    "path": "posts/2020-05-12-scrape-and-clean-an-online-table/",
+    "title": "Scrape, Clean, Join, Plot",
+    "description": "Write a function to scrape an online table, then use data.table to prep it for analysis. Use text from the table to add text annotations in a ggplot2 bar plot.",
+    "author": [
+      {
+        "name": "Jeremy Allen",
+        "url": "https://jeremydata.com"
+      }
+    ],
+    "date": "2020-05-12",
+    "categories": [],
+    "preview": "posts/2020-05-12-scrape-and-clean-an-online-table/scrape-and-clean-an-online-table_files/figure-html5/plot-1.png",
+    "last_modified": "2020-05-12T20:23:34-06:00",
+    "preview_width": 1920,
+    "preview_height": 1152
+  },
+  {
+    "path": "posts/2020-05-11-find-index-of-first-instance/",
+    "title": "Find Index of First Instance",
+    "description": "Find one thing with another thing. We'll speed test various data.table and tidyverse methods for finding the position of the first match and use that to index another column.",
+    "author": [
+      {
+        "name": "Jeremy Allen",
+        "url": "https://jeremydata.com"
+      }
+    ],
+    "date": "2020-05-11",
+    "categories": [],
+    "preview": "posts/2020-05-11-find-index-of-first-instance/index_benchmark.png",
+    "last_modified": "2020-05-12T20:20:42-06:00",
+    "preview_width": 1514,
+    "preview_height": 328
+  },
+  {
+    "path": "posts/2020-05-01-order-months/",
+    "title": "Order Months",
+    "description": "Produce a vector of month names ending with the current month.",
+    "author": [
+      {
+        "name": "Jeremy Allen",
+        "url": "https://jeremydata.com"
+      }
+    ],
+    "date": "2020-05-01",
+    "categories": [],
+    "preview": "posts/2020-05-01-order-months/order_months.png",
+    "last_modified": "2020-05-12T15:01:29-06:00",
+    "preview_width": 1366,
+    "preview_height": 332
+  }
+]

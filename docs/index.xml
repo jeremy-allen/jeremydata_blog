@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>jeremydata</title>
+    <link>https://jeremydata.com</link>
+    <atom:link href="https://jeremydata.com/index.xml" rel="self" type="application/rss+xml"/>
+    <description>R programming for data analysis and data visualization
+</description>
+    <image>
+      <title>jeremydata</title>
+      <url>https://jeremydata.com/images/favicon32x32.png</url>
+      <link>https://jeremydata.com</link>
+    </image>
+    <generator>Distill</generator>
+    <lastBuildDate>Tue, 12 May 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Scrape, Clean, Join, Plot</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2020-05-12-scrape-and-clean-an-online-table</link>
+      <description>Write a function to scrape an online table, then use data.table to prep it for analysis. Use text from the table to add text annotations in a ggplot2 bar plot.</description>
+      <guid>https://jeremydata.com/posts/2020-05-12-scrape-and-clean-an-online-table</guid>
+      <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2020-05-12-scrape-and-clean-an-online-table/scrape-and-clean-an-online-table_files/figure-html5/plot-1.png" medium="image" type="image/png" width="1920" height="1152"/>
+    </item>
+    <item>
+      <title>Find Index of First Instance</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2020-05-11-find-index-of-first-instance</link>
+      <description>Find one thing with another thing. We'll speed test various data.table and tidyverse methods for finding the position of the first match and use that to index another column.</description>
+      <guid>https://jeremydata.com/posts/2020-05-11-find-index-of-first-instance</guid>
+      <pubDate>Mon, 11 May 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2020-05-11-find-index-of-first-instance/index_benchmark.png" medium="image" type="image/png" width="1514" height="328"/>
+    </item>
+    <item>
+      <title>Order Months</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2020-05-01-order-months</link>
+      <description>Produce a vector of month names ending with the current month.</description>
+      <guid>https://jeremydata.com/posts/2020-05-01-order-months</guid>
+      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2020-05-01-order-months/order_months.png" medium="image" type="image/png" width="1366" height="332"/>
+    </item>
+  </channel>
+</rss>

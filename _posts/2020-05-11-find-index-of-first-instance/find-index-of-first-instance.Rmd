@@ -1,0 +1,143 @@
+---
+title: "Find Index of First Instance"
+description: |
+  Find one thing with another thing. We'll speed test various data.table and tidyverse methods for finding the position of the first match and use that to index another column.
+author:
+  - name: Jeremy Allen
+    url: https://jeremydata.com
+date: 05-11-2020
+preview: index_benchmark.png
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Yes, another data.table and tidyverse speed test, but this is more than that! I swear. This is real code of me working through a specific real-world issue.
+
+__The problem: Get the position number of the first instance of a thing in one column, and use that number to pick a thing from another column, in my case, returning the first date on which a specified number of cases occurred.__
+
+Load packages and make some fake data.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+library(data.table)
+library(dplyr)
+library(purrr)
+
+# lots of dates
+date = seq.Date(from = as.Date("1900-01-01"),
+                to = as.Date("2900-12-31"),
+                by = "day")
+
+# lots of cases
+cases = c(1:length(date)-1)
+
+# make a dataframe
+df <- data.frame(date = date, cases = cases)
+
+```
+
+<br>
+
+Let's use `which.max()` to get the date on which the first instance of 10,0000 cases occurred.
+
+```{r which_max, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+# Get the position of the first instance of 10,000 in the cases col,
+# and use that number to index the date col, returning the first date
+# on which 10,000 cases occurred.
+dt <- as.data.table(df) # convert to data.table first
+dt[, date[which.max(cases >= 10000)]]
+# this only works because 10000 is a vlaue that can be found in that column.
+```
+
+<br>
+
+However, `which.max()` returns 1 when it fails, thus indexing our first date, which we do not want because there are no days with 400,000 or more cases.
+
+__We need NA returned when we don't find an instance of the value we are looking for.__
+
+```{r which_max_fail, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# which.max returns 1 when it fails, thus indexing
+# our first date, which we do not want because there
+# are no days with 400,000 or more cases. We expect NA.
+dt[, date[which.max(cases >= 400000)]]
+
+```
+
+<br>
+
+Let's test many methods. We want to speed test them at the end, so I'm putting each method inside a function because it's easier to add them as functions in the speed test once we get there.
+
+```{r functions, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# which.max(), does NOT return NA when it fails. Bad.
+dt_which_max_method <- function() {
+  dt <- as.data.table(df)
+  dt[, date[which.max(cases >= 400000)]]
+} 
+
+# match(true, x) will return NA when it fails, which
+# is what we want so that we don't get a date returned
+# when there are no days with 400,000 or more cases
+dt_match_true_method <- function() {
+  dt <- as.data.table(df)
+  dt[, date[match(TRUE, cases >= 100000)]]
+} 
+
+# which()[1], test them all and return the first one, also returns NA
+dt_which_first_method <- function() {
+  dt <- as.data.table(df)
+  dt[, date[which(cases >= 400000)[1L]]]  
+}
+
+# use base R's Position function, also returns NA
+dt_position_method <- function() {
+  dt <- as.data.table(df)
+  dt[, date[Position(function(x) x >= 400000, cases)]]
+}
+
+# Tidyverse's purrr::detect_index(), returns 'Date of length 0'
+tv_purrr_method <- function() {
+  tb <- tibble::as_tibble(df)
+  tb %>%
+    slice(purrr::detect_index(cases, ~.x >= 400000)) %>% 
+    pull(date)
+}
+
+# Tidyverse mixed with the base R's match function
+tv_match_method <- function() {
+  tb <- tibble::as_tibble(df)
+  tb %>%
+    slice(match(TRUE, cases >= 100000)) %>% 
+    pull(date)
+}
+
+```
+
+<br>
+
+Get each function into microbenchmark and test each one 100 times.
+
+```{r speed_test, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, layout="l-body-page"}
+
+#--- Speed test them each 100 times
+
+microbenchmark::microbenchmark(
+  dt_which_max_method(),
+  dt_match_true_method(),
+  dt_which_first_method(),
+  dt_position_method(),
+  tv_purrr_method(),
+  tv_match_method(),
+  times = 100L
+)
+
+```
+
+<br>
+
+The vectorized methods, such as `match()` used on either a data.table or a tidyverse tibble are clear winners over the base `Position()` and purrr `detect_index()` functions.
