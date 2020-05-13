@@ -65,6 +65,14 @@ stay_at_home_table <- get_html_table(
 
 <br>
 
+To get the XPath for the table, go to the site, right-click anywhere on the table and select Inspect Element. You should then see the table in the html. Right-click the table in the html and select Copy, then XPath. I'm on a Mac in Safari, so this may look a little different if you are on Linux or Windows or other browsers.
+
+```{r image, echo=FALSE, message=FALSE, warning=FALSE, layout="l-page", paged.print=FALSE}
+knitr::include_graphics("xpath.png")
+```
+
+<br>
+
 Row 2 actually has the column names we want.
 
 ```{r table_head, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}

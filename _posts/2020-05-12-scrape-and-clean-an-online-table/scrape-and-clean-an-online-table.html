@@ -49,7 +49,7 @@
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["reopen_chart.png","scrape-and-clean-an-online-table_files/bowser-1.9.3/bowser.min.js","scrape-and-clean-an-online-table_files/distill-2.2.21/template.v2.js","scrape-and-clean-an-online-table_files/figure-html5/plot-1.png","scrape-and-clean-an-online-table_files/jquery-1.11.3/jquery.min.js","scrape-and-clean-an-online-table_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["scrape-and-clean-an-online-table_files/bowser-1.9.3/bowser.min.js","scrape-and-clean-an-online-table_files/distill-2.2.21/template.v2.js","scrape-and-clean-an-online-table_files/figure-html5/plot-1.png","scrape-and-clean-an-online-table_files/jquery-1.11.3/jquery.min.js","scrape-and-clean-an-online-table_files/webcomponents-2.0.0/webcomponents.js","xpath.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1004,6 +1004,11 @@ stay_at_home_table &lt;- get_html_table(
   xpath = my_xpath,
   header = FALSE
 )</code></pre>
+</div>
+<p><br></p>
+<p>To get the XPath for the table, go to the site, right-click anywhere on the table and select Inspect Element. You should then see the table in the html. Right-click the table in the html and select Copy, then XPath. I’m on a Mac in Safari, so this may look a little different if you are on Linux or Windows or other browsers.</p>
+<div class="layout-chunk" data-layout="l-page">
+<p><img src="xpath.png" width="1733" /></p>
 </div>
 <p><br></p>
 <p>Row 2 actually has the column names we want.</p>
