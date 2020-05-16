@@ -1,5 +1,5 @@
 ---
-title: "Twitter by location"
+title: "Twitter by Location"
 description: |
   Make functions that will gather tweets by keyword in multiple geographic locations, find the most resonating and most activating tweets in each city and present them in a pretty table for reading
 author:
@@ -41,7 +41,9 @@ readRenviron(".Renviron")
 # do we need to get more tweets?
 need_online_tweets <- FALSE
 if(need_online_tweets == FALSE) {
-  tweets <- readRDS(fs::dir_ls(here::here(), regexp = ".*covid_tweets.*"))
+  tweets <- readRDS(fs::dir_ls(here::here("_posts",
+                               "2020-05-14-twitter-by-location"),
+                               regexp = ".*covid_tweets.*"))
 } else { # download more tweets:
 
 #---- some helper functions for later

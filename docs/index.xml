@@ -14,7 +14,7 @@
     <generator>Distill</generator>
     <lastBuildDate>Thu, 14 May 2020 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Twitter by location</title>
+      <title>Twitter by Location</title>
       <dc:creator>Jeremy Allen</dc:creator>
       <link>https://jeremydata.com/posts/2020-05-14-twitter-by-location</link>
       <description>Make functions that will gather tweets by keyword in multiple geographic locations, find the most resonating and most activating tweets in each city and present them in a pretty table for reading</description>
