@@ -24,7 +24,7 @@ __Problem: What are Twitter users saying about COVID-19 in different cities acro
 
 <br>
 
-Load our packages. `rtweet` retrieves our tweets from the Twitter API and also gets the latitude and longitude coordinates for our cities by sending our city names through the Google Maps API. We will use the `reactable` package to make custom table to read our top tweets in each city.
+Load our packages. `rtweet` retrieves our tweets from the Twitter API and also gets the latitude and longitude coordinates for our cities by sending our city names through the Google Maps API. We will use the `reactable` package to make beautiful custom tables to read our top tweets in each city.
 
 ```{r packages, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
 library(here)
@@ -252,7 +252,7 @@ resonate_table <- reactable(
 
 ## Top 10 most resonating tweets in each city
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, layout="l-body-outset"}
 
 resonate_table
 
@@ -289,7 +289,7 @@ activate_table <- reactable(
 
 ## Top 10 most activating tweets in each city
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, layout="l-body-outset"}
 
 activate_table
 
