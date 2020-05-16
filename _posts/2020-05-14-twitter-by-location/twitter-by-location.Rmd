@@ -1,0 +1,294 @@
+---
+title: "Twitter by location"
+description: |
+  Make functions that will gather tweets by keyword in multiple geographic locations, find the most resonating and most activating tweets in each city and present them in a pretty table for reading
+author:
+  - name: Jeremy Allen
+    url: https://jeremydata.com
+date: 05-14-2020
+preview: tweet_table.png
+output:
+  distill::distill_article:
+    self_contained: false
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+<br>
+
+__Problem: What are Twitter users saying about COVID-19 in different cities across the US?__
+
+<br>
+
+Load our packages. `rtweet` retrieves our tweets from the Twitter API and also gets the latitude and longitude coordinates for our cities by sending our city names through the Google Maps API. We will use the `reactable` package to make custom table to read our top tweets in each city.
+
+```{r packages, message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(here)
+library(rio)
+library(tidyverse)
+library(rtweet)
+library(reactable)
+# read your local .Renviron file to get env variables, like Google Maps key
+readRenviron(".Renviron")
+```
+
+```{r get_tweets, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# do we need to get more tweets?
+need_online_tweets <- FALSE
+if(need_online_tweets == FALSE) {
+  tweets <- readRDS(fs::dir_ls(here::here(), regexp = ".*covid_tweets.*"))
+} else { # download more tweets:
+
+#---- some helper functions for later
+  
+# search twitter
+get_tweets <- function(locs, query) {
+  
+  search_tweets(
+    q = query,
+    geocode = locs,
+    n = 2000,
+    include_rts = FALSE
+  )
+  
+}
+
+# get coordinates for the places we want to search
+get_us_coords <- function(place, mile_radius) {
+  
+  # function output should be a character vetcor 
+  # that looks like: "40.397408,-102.054770,130mi"
+  # with no spaces, which is the format required by
+  # the twitter api
+  
+  if(!inherits(place, "character")) {
+    stop ("place must be a quoted character string")
+  }
+  
+  if(!inherits(mile_radius, "character")) {
+    stop ("mile_radius must be a quoted character string")
+  }
+
+  # requires google maps api key
+  rtweet::lookup_coords(
+    address = place,
+    components = "country:US",
+    apikey = Sys.getenv("GOOGLE_MAPS_KEY")
+    ) %>%
+    .[["point"]] %>%
+    paste0(., collapse = ",") %>%
+    paste0(., ",", mile_radius, "mi")
+  
+}
+
+#--- now to using those functions to get the tweets we want
+
+# list of places to search for tweets
+my_places <- list(
+  "New York, New York",
+  "Atlanta, Georgia",
+  "Chicago, Illinois",
+  "Dallas, Texas",
+  "Denver, Colorado",
+  "Phoenix, Arizona",
+  "Seattle, Washington",
+  "San Francisco, California"
+)
+
+# map our get_us_coords() function over our list of places to get a list of
+# lat long points with bundled radius for each place
+locs <- purrr::map(
+  my_places,
+  get_us_coords,
+  mile_radius = "55"
+)
+
+time_of_search <- Sys.time()
+
+# map our get_tweets() function over our list of places
+# then combine results and remove duplicate tweets
+dat_list <- purrr::map(
+  .x = locs,
+  .f = get_tweets,
+  query = "COVID"
+) %>% # name each list element with its location name, to use in bind_rows below
+  set_names(my_places)
+
+dat <- bind_rows(
+  dat_list,
+  .id = "city_searched" # this column will be filled with the list element names
+) %>% unique()
+
+
+tweets <- dat %>% 
+  select( # reorder columns
+    city_searched,
+    location,
+    created_at,
+    screen_name,
+    name,
+    text,
+    hashtags,
+    favorite_count,
+    retweet_count,
+    quote_count,
+    reply_count,
+    status_id,
+    everything()
+  ) %>% # the geo_coords column is a list column of lat-lng vectors, so unnest_wider
+  mutate(geo_coords = map(geo_coords, ~set_names(., c("lat", "lng")))) %>% 
+  unnest_wider(geo_coords) %>% 
+  arrange(
+    desc(created_at)
+  )
+
+#---- write the tweets to disk
+
+# format time for use in file name
+my_time <- str_replace_all(time_of_search, " ", "_")
+my_time <- str_replace_all(my_time, ":", ".")
+my_file_name <- paste0("covid_tweets_", my_time)
+
+# write tweets to disk
+saveRDS(tweets, here::here(my_file_name))
+#rio::export(tweets, here::here(my_file_name))
+
+}
+
+```
+
+<br>
+
+Group by city, arrange the `favorite_count` column in descending order, and limit the columns we display.
+
+
+```{r analysis, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# favorited
+most_resonating <- tweets %>% 
+  select(city_searched,
+         text,
+         favorite_count,
+         hashtags,
+         screen_name,
+         created_at,
+         retweet_count) %>% 
+  group_by(city_searched) %>%
+  arrange(desc(favorite_count)) %>% 
+  slice(1:10)
+  
+
+# retweeted
+most_activating <- tweets %>% 
+  select(city_searched,
+         text,
+         retweet_count,
+         hashtags,
+         screen_name,
+         created_at,
+         favorite_count
+         ) %>%
+  group_by(city_searched) %>%
+  arrange(desc(retweet_count)) %>% 
+  slice(1:10)
+
+```
+
+<br>
+
+Set some basic CSS for our table class and the class of our text column.
+
+```{css, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+.tweet-tbl {
+  font-size: .6em;
+}
+
+.text-col {
+  font-weight: 600;
+  color: #e96384;
+}
+
+```
+
+<br>
+
+The table showing the top 10 most favorited tweets in each city. Click a city to expand its rows. Scroll right to see more columns. First up are the tweets that resonate the most, i.e., the tweets most favorited.
+
+```{r resonate, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# a color palette function to shade table cells based on a value
+my_pal <- function(x) rgb(colorRamp(c("#f0f0f5", "#a3a3c2"))(x), maxColorValue = 250)
+
+resonate_table <- reactable(
+  most_resonating,
+  groupBy = "city_searched",
+  filterable = TRUE,
+  class = "tweet-tbl",
+  height = 600,
+  columns = list(
+    text = colDef(
+      class = "text-col", # see CSS chunk for styling
+      minWidth = 400
+    ),
+    favorite_count = colDef(style = function(value) {
+      normalized <- (value - min(most_resonating$favorite_count)) / 
+        (max(most_resonating$favorite_count) - min(most_resonating$favorite_count))
+      color <- my_pal(normalized)
+      list(background = color)
+      }
+    )
+  )
+)
+
+```
+
+## Top 10 most resonating tweets in each city
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+resonate_table
+
+```
+
+<br>
+
+Next up are the tweets that activate the most, i.e., the tweets most retweeted.
+
+```{r activate, echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+activate_table <- reactable(
+  most_activating,
+  groupBy = "city_searched",
+  filterable = TRUE,
+  class = "tweet-tbl",
+  height = 600,
+  columns = list(
+    text = colDef(
+      class = "text-col", # see CSS chunk for styling
+      minWidth = 400
+    ),
+    retweet_count = colDef(style = function(value) {
+      normalized <- (value - min(most_activating$retweet_count)) / 
+        (max(most_activating$retweet_count) - min(most_activating$retweet_count))
+      color <- my_pal(normalized)
+      list(background = color)
+      }
+    )
+  )
+)
+
+```
+
+## Top 10 most activating tweets in each city
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+activate_table
+
+```
