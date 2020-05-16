@@ -26,3 +26,7 @@ Disillusioned with that experience I returned to school full-time as an adult st
 ## Contact
 
 Tweet me @[jeremy_data](https://twitter.com/jeremy_data)
+
+```{r face, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, out.width = "15%"}
+knitr::include_graphics("images/20200425_pandemic_beard.png")
+```
