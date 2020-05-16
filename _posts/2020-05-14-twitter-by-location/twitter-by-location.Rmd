@@ -252,7 +252,7 @@ resonate_table <- reactable(
 
 ## Top 10 most resonating tweets in each city
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, layout="l-body-outset"}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, layout="l-page"}
 
 resonate_table
 
@@ -289,7 +289,7 @@ activate_table <- reactable(
 
 ## Top 10 most activating tweets in each city
 
-```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, layout="l-body-outset"}
+```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, layout="l-page"}
 
 activate_table
 
