@@ -20,7 +20,7 @@
       <description>Make functions that will gather tweets by keyword in multiple geographic locations, find the most resonating and most activating tweets in each city and present them in a pretty table for reading</description>
       <guid>https://jeremydata.com/posts/2020-05-14-twitter-by-location</guid>
       <pubDate>Thu, 14 May 2020 00:00:00 +0000</pubDate>
-      <media:content url="https://jeremydata.com/posts/2020-05-14-twitter-by-location/tweet_table.png" medium="image" type="image/png" width="1562" height="1020"/>
+      <media:content url="https://jeremydata.com/posts/2020-05-14-twitter-by-location/tweet_table.png" medium="image" type="image/png" width="2418" height="1494"/>
     </item>
     <item>
       <title>Scrape, Clean, Join, Plot</title>

@@ -244,13 +244,14 @@ resonate_table <- reactable(
       color <- my_pal(normalized)
       list(background = color)
       }
-    )
+    ),
+    hashtags = colDef(style = list(borderLeft = "2px solid #8585ad"))
   )
 )
 
 ```
 
-## Top 10 most resonating tweets in each city
+### Top 10 most resonating tweets in each city
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, layout="l-page"}
 
@@ -281,13 +282,14 @@ activate_table <- reactable(
       color <- my_pal(normalized)
       list(background = color)
       }
-    )
+    ),
+    hashtags = colDef(style = list(borderLeft = "2px solid #8585ad"))
   )
 )
 
 ```
 
-## Top 10 most activating tweets in each city
+### Top 10 most activating tweets in each city
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, layout="l-page"}
 
