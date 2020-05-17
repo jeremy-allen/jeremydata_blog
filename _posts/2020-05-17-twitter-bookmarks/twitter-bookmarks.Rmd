@@ -1,0 +1,35 @@
+---
+title: "Twitter Bookmarks"
+description: |
+  Recently bookmarked tweets worth sharing.
+author:
+  - name: Jeremy Allen
+    url: https://jeremydata.com
+date: 05-17-2020
+preview: preview.png
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Recently bookmarked tweets worth sharing
+
+Click an image to go there!
+
+```{css}
+
+div.l-screen {
+  overflow-x: scroll;
+}
+
+```
+
+
+```{r image, echo=FALSE, message=FALSE, warning=FALSE, layout="l-screen", paged.print=FALSE}
+htmltools::includeHTML("tweets_map_layers.html")
+```
+
