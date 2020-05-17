@@ -12,7 +12,16 @@
       <link>https://jeremydata.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 14 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 17 May 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Twitter Bookmarks</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2020-05-17-twitter-bookmarks</link>
+      <description>Recently bookmarked tweets worth sharing.</description>
+      <guid>https://jeremydata.com/posts/2020-05-17-twitter-bookmarks</guid>
+      <pubDate>Sun, 17 May 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2020-05-17-twitter-bookmarks/preview.png" medium="image" type="image/png" width="3782" height="1098"/>
+    </item>
     <item>
       <title>Twitter by Location</title>
       <dc:creator>Jeremy Allen</dc:creator>
