@@ -12,7 +12,16 @@
       <link>https://jeremydata.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 17 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Shiny Holiday Party</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2021-02-15-shiny-holiday-party</link>
+      <description>Fun Shiny app to draw names at the office party</description>
+      <guid>https://jeremydata.com/posts/2021-02-15-shiny-holiday-party</guid>
+      <pubDate>Mon, 15 Feb 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2021-02-15-shiny-holiday-party/site_screenshot.png" medium="image" type="image/png" width="1998" height="1824"/>
+    </item>
     <item>
       <title>Twitter Bookmarks</title>
       <dc:creator>Jeremy Allen</dc:creator>
