@@ -11,9 +11,9 @@
     ],
     "date": "2021-02-15",
     "categories": [],
-    "contents": "\nFor an annual holiday Zoom party I was asked to draw random team member name who would win a prize. So I made a Shiny app! The code is on my Github if you want it. The app is on shinyapps.io. if you want to play.\nThe Fun Part\nIn addition to picking a team member’s name, the app also searches IMDB movie plot summaries for that name, picks a random one from the results and shows it in the app without the movie title. Then every tries to guess the movie title. There is a “reveal” button to reveal the movie title.\nI removed my coworkers’ names from the app and am using a random selection from the RStudio team page. Here’s a preview, now go play!\n\n\n\n\n",
+    "contents": "\nFor an annual holiday Zoom party I was asked to draw a random team member’s name who would win a prize. So I made a Shiny app! The code is on my Github if you want it. The app is on shinyapps.io. if you want to play.\nThe Fun Part\nIn addition to picking a name, the app also searches IMDB movie plot summaries for that name, picks a random one from the results and shows it in the app without the movie title. Then every tries to guess the movie title. There is a “reveal” button to reveal the movie title.\nI removed my coworkers’ names from the app and am using a random selection from the RStudio team page. Here’s a preview, now go play!\n\n\n\n\n",
     "preview": "posts/2021-02-15-shiny-holiday-party/site_screenshot.png",
-    "last_modified": "2021-02-15T22:16:30-05:00",
+    "last_modified": "2021-02-15T22:32:45-05:00",
     "input_file": "shiny-holiday-party.utf8.md",
     "preview_width": 1998,
     "preview_height": 1824
