@@ -12,7 +12,21 @@
       <link>https://jeremydata.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 15 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Scrape Hundreds of PDF Documents From the Web with R and rvest</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2021-02-16-scrape-hundreds-of-pdf-documents-from-the-web-with-r-and-rvest</link>
+      <description>A short description of the post.</description>
+      <category>tidyverse</category>
+      <category>web scraping</category>
+      <category>rvest</category>
+      <category>purrr</category>
+      <category>polite</category>
+      <guid>https://jeremydata.com/posts/2021-02-16-scrape-hundreds-of-pdf-documents-from-the-web-with-r-and-rvest</guid>
+      <pubDate>Tue, 16 Feb 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2021-02-16-scrape-hundreds-of-pdf-documents-from-the-web-with-r-and-rvest/files.png" medium="image" type="image/png" width="2030" height="684"/>
+    </item>
     <item>
       <title>Shiny Holiday Party</title>
       <dc:creator>Jeremy Allen</dc:creator>
