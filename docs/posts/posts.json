@@ -20,7 +20,7 @@
     ],
     "contents": "\n\nThe Biden administration has given the Army three years to rename Confederate-named bases. I built this little web app that scrapes all Union general names from Wikipedia, then identifies the first letter of their last name and how many syllables are in that name. Click on a Confederate-named base and see all Union generals who match the first letter and number of syllables. I even found some Google fonts that are similar to 19-century fonts.\nI use the rvest package to scrape the tables from Wikipedia. I count syllables with the nsyllable() function from the quanteda package. With purrr’s pmap() function I iterate over each Union general to make a Shiny UI element that formats each general’s name and ranks into a card format. All layout for the Shiny app is done with CSS Flexbox.\nSee the web app here.\nAll the code is on my GitHub.\n\n\n\n",
     "preview": "posts/2021-02-21-tidyverse-to-army-how-copy-over/website-screenshot.png",
-    "last_modified": "2021-02-21T14:15:43-05:00",
+    "last_modified": "2021-02-21T14:19:02-05:00",
     "input_file": "tidyverse-to-army-how-copy-over.utf8.md",
     "preview_width": 2268,
     "preview_height": 2522
