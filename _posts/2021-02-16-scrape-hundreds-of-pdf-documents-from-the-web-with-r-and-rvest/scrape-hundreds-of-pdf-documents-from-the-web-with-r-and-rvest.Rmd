@@ -1,7 +1,7 @@
 ---
 title: "Scrape Hundreds of PDF Documents From the Web with R and rvest"
 description: |
-  Safely download all complaints, affidavits, and indictments for the capitol attackers
+  Safely download all complaints, affidavits, and indictments for all capitol attackers
 author:
   - name: Jeremy Allen
     url: https://jeremydata.com
