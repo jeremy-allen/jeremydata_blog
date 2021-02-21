@@ -12,7 +12,22 @@
       <link>https://jeremydata.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 16 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 21 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Tidyverse to Army. How Copy? Over.</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2021-02-21-tidyverse-to-army-how-copy-over</link>
+      <description>Helping the Army rename their Confederate-named bases with some help from R's tidyverse, rvest, quanteda, and Shiny</description>
+      <category>shiny</category>
+      <category>nlp</category>
+      <category>rvest</category>
+      <category>tidyverse</category>
+      <category>web scraping</category>
+      <category>purrr</category>
+      <guid>https://jeremydata.com/posts/2021-02-21-tidyverse-to-army-how-copy-over</guid>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2021-02-21-tidyverse-to-army-how-copy-over/website-screenshot.png" medium="image" type="image/png" width="2268" height="2522"/>
+    </item>
     <item>
       <title>Scrape Hundreds of PDF Documents From the Web with R and rvest</title>
       <dc:creator>Jeremy Allen</dc:creator>
