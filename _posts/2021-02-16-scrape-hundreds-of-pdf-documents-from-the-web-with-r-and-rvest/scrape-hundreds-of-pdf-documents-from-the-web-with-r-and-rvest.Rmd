@@ -1,7 +1,7 @@
 ---
 title: "Scrape Hundreds of PDF Documents From the Web with R and rvest"
 description: |
-  Safely download over 300 PDF files with R and tidyverse packages
+  Safely download all complaints, affidavits, and indictments for the capitol attackers
 author:
   - name: Jeremy Allen
     url: https://jeremydata.com

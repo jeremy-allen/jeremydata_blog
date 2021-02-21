@@ -32,7 +32,7 @@
       <title>Scrape Hundreds of PDF Documents From the Web with R and rvest</title>
       <dc:creator>Jeremy Allen</dc:creator>
       <link>https://jeremydata.com/posts/2021-02-16-scrape-hundreds-of-pdf-documents-from-the-web-with-r-and-rvest</link>
-      <description>Safely download over 300 PDF files with R and tidyverse packages</description>
+      <description>Safely download all complaints, affidavits, and indictments for the capitol attackers</description>
       <category>tidyverse</category>
       <category>web scraping</category>
       <category>rvest</category>
