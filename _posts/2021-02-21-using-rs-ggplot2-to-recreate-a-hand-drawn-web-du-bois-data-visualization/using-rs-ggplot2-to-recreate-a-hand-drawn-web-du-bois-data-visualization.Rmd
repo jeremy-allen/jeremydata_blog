@@ -1,15 +1,15 @@
 ---
 title: "Using R's ggplot2 to recreate a hand-drawn W.E.B. Du Bois data visualization"
-description: 
-   
+description: |
+  fine-tuning margins, lables, and annotations
 author:
   - name: Jeremy Allen
     url: https://jeremydata.com
 date: 02-21-2021
+preview: before_after.png
 output:
   distill::distill_article:
     self_contained: false
-  preview: before_after.png
 categories:
   - racism
   - sociology
