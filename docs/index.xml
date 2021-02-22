@@ -29,6 +29,18 @@
       <media:content url="https://jeremydata.com/posts/2021-02-21-tidyverse-to-army-how-copy-over/website-screenshot.png" medium="image" type="image/png" width="2268" height="2522"/>
     </item>
     <item>
+      <title>Using R's ggplot2 to recreate a hand-drawn W.E.B. Du Bois data visualization</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization</link>
+      <description>Using R's ggplot2 to recreate a hand-drawn W.E.B. Du Bois data visualization</description>
+      <category>racism</category>
+      <category>sociology</category>
+      <category>dataviz</category>
+      <category>ggplot2</category>
+      <guid>https://jeremydata.com/posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization</guid>
+      <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
       <title>Scrape Hundreds of PDF Documents From the Web with R and rvest</title>
       <dc:creator>Jeremy Allen</dc:creator>
       <link>https://jeremydata.com/posts/2021-02-16-scrape-hundreds-of-pdf-documents-from-the-web-with-r-and-rvest</link>
