@@ -12,7 +12,21 @@
       <link>https://jeremydata.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 21 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Use R and tidytext to Scrape and Analyze Word Variance in Gendered Christian Book Descriptions</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2021-02-22-web-scraping-and-text-analysis-of-gendered-christian-book-descriptions</link>
+      <description>How does word usage vary in Christian book descriptions marketed distinctly for men and women?</description>
+      <category>web scraping</category>
+      <category>tidyverse</category>
+      <category>tidytext</category>
+      <category>tidytext</category>
+      <category>nlp</category>
+      <guid>https://jeremydata.com/posts/2021-02-22-web-scraping-and-text-analysis-of-gendered-christian-book-descriptions</guid>
+      <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2021-02-22-web-scraping-and-text-analysis-of-gendered-christian-book-descriptions/women_men_word_tfidf.png" medium="image" type="image/png" width="4133" height="2952"/>
+    </item>
     <item>
       <title>Tidyverse to Army. How Copy? Over.</title>
       <dc:creator>Jeremy Allen</dc:creator>
