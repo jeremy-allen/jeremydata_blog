@@ -42,10 +42,10 @@
       "dataviz",
       "ggplot2"
     ],
-    "contents": "\nFor the 1900 Paris Exposition, sociologists W.E.B Du Bois curated a set of photographs and created hand-drawn data visualizations to combat racism in science and culture. In February 2021 #TidyTuesday and the #DuBoisChallenge collaborated to challenge us to use modern tools to recreate Du Bois’s data visualizations.\n\nI chose to recreate plate 51. I learned a ton about spacing in R’s ggplot2 package. How to implement margins around any element, how to add empty lines in title and subtitles, how to use if statements to conditionally place data labels and more. All the code is on my Github.\n\nPlease visit two places to read and see more about W.E.B Du Bois’s work for the 1900 Paris Exposition. The Library of Congress site for all of the materials. Anthony Starks’s recreations of all the pieces.\n\n\n\n",
+    "contents": "\nFor the 1900 Paris Exposition, sociologists W.E.B Du Bois curated a set of photographs and created hand-drawn data visualizations to combat racism in science and culture. In February 2021 #TidyTuesday and the #DuBoisChallenge collaborated to challenge us to use modern tools to recreate Du Bois’s data visualizations.\nI chose to recreate plate 51. I learned a ton about spacing in R’s ggplot2 package. How to implement margins around any element, how to add empty lines in title and subtitles, how to use if statements to conditionally place data labels and more. All the code is on my Github.\n\n\n\nFigure 1: original | recreation\n\n\n\n\nPlease visit two places to read and see more about W.E.B Du Bois’s work for the 1900 Paris Exposition. The Library of Congress site for all of the materials. Anthony Starks’s recreations of all the pieces.\n\n\n\n",
     "preview": "posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/before_after.png",
-    "last_modified": "2021-02-21T20:24:42-05:00",
-    "input_file": {},
+    "last_modified": "2021-02-21T20:41:36-05:00",
+    "input_file": "using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization.utf8.md",
     "preview_width": 2906,
     "preview_height": 1892
   },
