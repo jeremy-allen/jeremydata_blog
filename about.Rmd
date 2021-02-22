@@ -1,7 +1,7 @@
 ---
 title: "Why"
 description: |
-  R programming for meaningful data analysis and data visualization?
+  R programming for meaningful data analysis and data visualization
 output:
   distill::distill_article:
     css: styles.css
