@@ -87,6 +87,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
 <title>jeremydata: Using R's ggplot2 to recreate a hand-drawn W.E.B. Du Bois data visualization</title>
 
+<meta property="description" itemprop="description" content="fine-tuning margins, lables, and annotations"/>
 
 <link rel="canonical" href="https://jeremydata.com/posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/"/>
 <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
@@ -100,14 +101,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
 <meta property="og:title" content="jeremydata: Using R&#39;s ggplot2 to recreate a hand-drawn W.E.B. Du Bois data visualization"/>
 <meta property="og:type" content="article"/>
+<meta property="og:description" content="fine-tuning margins, lables, and annotations"/>
 <meta property="og:url" content="https://jeremydata.com/posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/"/>
+<meta property="og:image" content="https://jeremydata.com/posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/before_after.png"/>
+<meta property="og:image:width" content="2906"/>
+<meta property="og:image:height" content="1892"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="jeremydata"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
-<meta property="twitter:card" content="summary"/>
+<meta property="twitter:card" content="summary_large_image"/>
 <meta property="twitter:title" content="jeremydata: Using R&#39;s ggplot2 to recreate a hand-drawn W.E.B. Du Bois data visualization"/>
+<meta property="twitter:description" content="fine-tuning margins, lables, and annotations"/>
 <meta property="twitter:url" content="https://jeremydata.com/posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/"/>
+<meta property="twitter:image" content="https://jeremydata.com/posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/before_after.png"/>
+<meta property="twitter:image:width" content="2906"/>
+<meta property="twitter:image:height" content="1892"/>
 <meta property="twitter:site" content="@jeremy_data"/>
 <meta property="twitter:creator" content="Jeremy Allen"/>
 
@@ -122,12 +131,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["Using R's ggplot2 to recreate a hand-drawn W.E.B. Du Bois data visualization"]},{"type":"NULL"},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Jeremy Allen"]},{"type":"character","attributes":{},"value":["https://jeremydata.com"]}]}]},{"type":"character","attributes":{},"value":["02-21-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article","preview"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]},{"type":"character","attributes":{},"value":["before_after.png"]}]},{"type":"character","attributes":{},"value":["racism","sociology","dataviz","ggplot2"]},{"type":"character","attributes":{},"value":["https://jeremydata.com/posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/"]},{"type":"character","attributes":{},"value":["https://jeremydata.com/posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","preview","output","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["Using R's ggplot2 to recreate a hand-drawn W.E.B. Du Bois data visualization"]},{"type":"character","attributes":{},"value":["fine-tuning margins, lables, and annotations"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Jeremy Allen"]},{"type":"character","attributes":{},"value":["https://jeremydata.com"]}]}]},{"type":"character","attributes":{},"value":["02-21-2021"]},{"type":"character","attributes":{},"value":["before_after.png"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["racism","sociology","dataviz","ggplot2"]},{"type":"character","attributes":{},"value":["https://jeremydata.com/posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/"]},{"type":"character","attributes":{},"value":["https://jeremydata.com/posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["before_after.png","tweet.png"]}
+  {"type":"character","attributes":{},"value":["before_after.png","tweet.png","using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization_files/anchor-4.2.2/anchor.min.js","using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization_files/bowser-1.9.3/bowser.min.js","using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization_files/distill-2.2.21/template.v2.js","using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization_files/header-attrs-2.6/header-attrs.js","using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization_files/jquery-1.11.3/jquery.min.js","using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization_files/popper-2.6.0/popper.min.js","using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization_files/tippy-6.2.7/tippy-bundle.umd.min.js","using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization_files/tippy-6.2.7/tippy-light-border.css","using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization_files/tippy-6.2.7/tippy.css","using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization_files/tippy-6.2.7/tippy.umd.min.js","using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2141,7 +2150,7 @@ h4, h5, h6 {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Using R's ggplot2 to recreate a hand-drawn W.E.B. Du Bois data visualization","authors":[{"author":"Jeremy Allen","authorURL":"https://jeremydata.com","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-02-21T00:00:00.000+00:00","citationText":"Allen, 2021"}
+{"title":"Using R's ggplot2 to recreate a hand-drawn W.E.B. Du Bois data visualization","description":"fine-tuning margins, lables, and annotations","authors":[{"author":"Jeremy Allen","authorURL":"https://jeremydata.com","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-02-21T00:00:00.000+00:00","citationText":"Allen, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2179,7 +2188,7 @@ h4, h5, h6 {
   <a href="../../index.html#category:ggplot2" class="dt-tag">ggplot2</a>
 </div>
 <!--/radix_placeholder_categories-->
-
+<p><p>fine-tuning margins, lables, and annotations</p></p>
 </div>
 
 <div class="d-byline">
