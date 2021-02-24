@@ -28,7 +28,10 @@ I have since worked on a variety of projects, from predicting late invoice payme
 
 ## Contact
 
-Tweet me @[jeremy_data](https://twitter.com/jeremy_data)
+Tweet me @[jeremy_data](https://twitter.com/jeremy_data)  
+
+[Code on GitHub](https://github.com/jeremy-allen)  
+
 
 ```{r face, echo=FALSE, message=FALSE, warning=FALSE, paged.print=FALSE, out.width = "15%"}
 knitr::include_graphics("images/20200425_pandemic_beard.png")
