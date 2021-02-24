@@ -12,7 +12,20 @@
       <link>https://jeremydata.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 22 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 24 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>COVID-19 Death Tracking App</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2021-02-24-covid-19-death-tracking-app</link>
+      <description>An R Shiny app designed for my family to track a single metric and to promote data literacy by including explanatory text with the data visualizations.</description>
+      <category>shiny</category>
+      <category>web scraping</category>
+      <category>plotly</category>
+      <category>ggplot2</category>
+      <guid>https://jeremydata.com/posts/2021-02-24-covid-19-death-tracking-app</guid>
+      <pubDate>Wed, 24 Feb 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2021-02-24-covid-19-death-tracking-app/app_screenshot.png" medium="image" type="image/png" width="3522" height="2146"/>
+    </item>
     <item>
       <title>Use R and tidytext to Scrape and Analyze Word Variance in Gendered Christian Book Descriptions</title>
       <dc:creator>Jeremy Allen</dc:creator>

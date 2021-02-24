@@ -1,5 +1,29 @@
 [
   {
+    "path": "posts/2021-02-24-covid-19-death-tracking-app/",
+    "title": "COVID-19 Death Tracking App",
+    "description": "An R Shiny app designed for my family to track a single metric and to promote data literacy by including explanatory text with the data visualizations.",
+    "author": [
+      {
+        "name": "Jeremy Allen",
+        "url": "https://jeremydata.com"
+      }
+    ],
+    "date": "2021-02-24",
+    "categories": [
+      "shiny",
+      "web scraping",
+      "plotly",
+      "ggplot2"
+    ],
+    "contents": "\n\n\n\nFigure 1: Top distinguishing words in men’s and women’s Christian-Living book descriptions\n\n\n\nI made this R Shiny app for my family to track a single metric. To promote data literacy, I included explanatory text with the data visualizations. CSS flexbox controls the layout, so the app works on mobile devices well.\nThe main visualization is an animated chart I created with the plotly package for R. Plotly for R enables interactive javascript-based visuals. I chose this for the main data visual in order to make obvious when the coronavirus is spreading exponentially and when it is not.\nThe image above is just a screenshot. Go check out the app at https://jeremyallen.shinyapps.io/covid_deaths/.\n\n\n\n",
+    "preview": "posts/2021-02-24-covid-19-death-tracking-app/app_screenshot.png",
+    "last_modified": "2021-02-24T09:58:59-05:00",
+    "input_file": "covid-19-death-tracking-app.utf8.md",
+    "preview_width": 3522,
+    "preview_height": 2146
+  },
+  {
     "path": "posts/2021-02-22-web-scraping-and-text-analysis-of-gendered-christian-book-descriptions/",
     "title": "Use R and tidytext to Scrape and Analyze Word Variance in Gendered Christian Book Descriptions",
     "description": "How does word usage vary in Christian book descriptions marketed distinctly for men and women?",
