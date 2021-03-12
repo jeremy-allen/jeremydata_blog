@@ -1,0 +1,152 @@
+---
+title: "By Row in Base R, Tidyverse, and data.table"
+description: |
+  Which rows have more 1s than 0s?.
+author:
+  - name: Jeremy Allen
+    url: https://jeremydata.com
+date: 03-12-2021
+preview: solution.png
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - rowwise
+  - tidyvere
+  - data.table
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# PROBLEM: Add a column that indicates if a row has more 1s than 0s, use 1 if true, 0 if false, but only consider specific columns and allow for NAs.
+
+This question was asked on Twitter, and I want to elaborate on the solutions here.  
+
+We know we need to include
+
+- a column selection constraint
+
+- properly handle NAs
+
+- answers in a new column
+
+- 1 for TRUE and 0 for FALSE  
+
+First, let's make sample data that includes a row with NA.  
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# PROBLEM: add a column that indicates if a row has more 1s than 0s,
+# use 1 if true, 0 if false, but only consider certain columns and
+# allow for NAs.
+
+# sample data
+df <- data.frame(
+  a = as.integer(c(1,0,1,0,0)),
+  b = as.integer(c(1,0,1,0,0)),
+  c = as.integer(c(1,0,1,1,0)),
+  d = as.integer(c(1,1,0,9,0)),
+  e = as.integer(c(1,1,0,1,0)),
+  f = as.integer(c(1,1,NA,0,0)),
+  g = as.integer(c(1,1,1,0,0))
+)
+
+```
+
+Let's try a base R solution first.  Base R has a function `rowMeans()` that could be helpful.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+#---- base R solution ----
+
+# base R rowMeans() says yes to row 4, but row 4 does not have 
+# more 1s than 0s, and it will fail on any non-numeric columns
+df$more_1s <- ifelse(rowMeans(df, na.rm = T) > .5,1,0)
+
+df
+
+```
+
+However, if use the mean of each row, instead of literally just counting 1s and 0s, then we can be fooled by rows with larger numbers, like row 4 above. So, let's make a function that only counts 1s and 0s, which is the problem we were asked to solve.
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# function to count only ones and zeros and report TRUE or
+# FALSE if more 1s, and convert the logical to integer
+is_more_1s <- function(x) {
+  as.integer(
+    sum(x == 1, na.rm = T) > sum(x == 0, na.rm = T)
+  )
+}
+
+# this gets row 4 correct
+df$more_1s <- apply(df, 1, is_more_1s)
+
+df
+
+```
+
+This function only counts 1s and 0s, ignoring the 9 in row 4 and therefore giving us the correct answer in our new column. The function also returns a 1 if `TRUE` and a 0 if `FALSE`.  
+
+# library(tidyverse)
+
+Let's try a tidyverse solution that uses `rowwise()` instead of `apply()`
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+#---- tidyverse solution ----
+
+# sample data
+df <- data.frame(
+  a = as.integer(c(1,0,1,0,0)),
+  b = as.integer(c(1,0,1,0,0)),
+  c = as.integer(c(1,0,1,1,0)),
+  d = as.integer(c(1,1,0,9,0)),
+  e = as.integer(c(1,1,0,1,0)),
+  f = as.integer(c(1,1,NA,0,0)),
+  g = as.integer(c(1,1,1,0,0))
+)
+
+library(tidyverse)
+
+tb <- as_tibble(df)
+tb %>% 
+  rowwise() %>% 
+  mutate(more_1s = is_more_1s(c_across(a:g))) # only a through g
+
+```
+
+Here, `rowwise()` makes sure we are counting across rows, and `c_across()` lets us constrain which columns we consider, which is part of the problem we were asked to solve.  
+
+# library(data.table)
+
+Using only data.table we don't have `rowwise()` from dplyr, so we use base R's `apply()` again. We use `.SD` and `.SDcols` to specify which columns we want to be constrained to.  
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+#---- data.table solution ----
+
+# sample data
+df <- data.frame(
+  a = as.integer(c(1,0,1,0,0)),
+  b = as.integer(c(1,0,1,0,0)),
+  c = as.integer(c(1,0,1,1,0)),
+  d = as.integer(c(1,1,0,9,0)),
+  e = as.integer(c(1,1,0,1,0)),
+  f = as.integer(c(1,1,NA,0,0)),
+  g = as.integer(c(1,1,1,0,0))
+)
+
+library(data.table)
+
+dt <- as.data.table(df)
+my_cols <- letters[1:7] # only a through g
+dt[, more_1s := apply(.SD, 1, is_more_1s), .SDcols = my_cols]
+
+dt
+
+```
+

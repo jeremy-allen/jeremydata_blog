@@ -12,7 +12,19 @@
       <link>https://jeremydata.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 24 Feb 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>By Row in Base R, Tidyverse, and data.table</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2021-03-12-by-row-in-base-r-tidyverse-and-datatable</link>
+      <description>Which rows have more 1s than 0s?.</description>
+      <category>rowwise</category>
+      <category>tidyvere</category>
+      <category>data.table</category>
+      <guid>https://jeremydata.com/posts/2021-03-12-by-row-in-base-r-tidyverse-and-datatable</guid>
+      <pubDate>Fri, 12 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2021-03-12-by-row-in-base-r-tidyverse-and-datatable/solution.png" medium="image" type="image/png" width="396" height="260"/>
+    </item>
     <item>
       <title>COVID-19 Death Tracking App</title>
       <dc:creator>Jeremy Allen</dc:creator>

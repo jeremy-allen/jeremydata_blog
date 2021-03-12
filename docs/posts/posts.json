@@ -1,5 +1,28 @@
 [
   {
+    "path": "posts/2021-03-12-by-row-in-base-r-tidyverse-and-datatable/",
+    "title": "By Row in Base R, Tidyverse, and data.table",
+    "description": "Which rows have more 1s than 0s?.",
+    "author": [
+      {
+        "name": "Jeremy Allen",
+        "url": "https://jeremydata.com"
+      }
+    ],
+    "date": "2021-03-12",
+    "categories": [
+      "rowwise",
+      "tidyvere",
+      "data.table"
+    ],
+    "contents": "\nPROBLEM: Add a column that indicates if a row has more 1s than 0s, use 1 if true, 0 if false, but only consider specific columns and allow for NAs.\nThis question was asked on Twitter, and I want to elaborate on the solutions here.\nWe know we need to include\na column selection constraint\nproperly handle NAs\nanswers in a new column\n1 for TRUE and 0 for FALSE\nFirst, let’s make sample data that includes a row with NA.\n\n\n# PROBLEM: add a column that indicates if a row has more 1s than 0s,\n# use 1 if true, 0 if false, but only consider certain columns and\n# allow for NAs.\n\n# sample data\ndf <- data.frame(\n  a = as.integer(c(1,0,1,0,0)),\n  b = as.integer(c(1,0,1,0,0)),\n  c = as.integer(c(1,0,1,1,0)),\n  d = as.integer(c(1,1,0,9,0)),\n  e = as.integer(c(1,1,0,1,0)),\n  f = as.integer(c(1,1,NA,0,0)),\n  g = as.integer(c(1,1,1,0,0))\n)\n\n\n\nLet’s try a base R solution first. Base R has a function rowMeans() that could be helpful.\n\n\n#---- base R solution ----\n\n# base R rowMeans() says yes to row 4, but row 4 does not have \n# more 1s than 0s, and it will fail on any non-numeric columns\ndf$more_1s <- ifelse(rowMeans(df, na.rm = T) > .5,1,0)\n\ndf\n\n\n  a b c d e  f g more_1s\n1 1 1 1 1 1  1 1       1\n2 0 0 0 1 1  1 1       1\n3 1 1 1 0 0 NA 1       1\n4 0 0 1 9 1  0 0       1\n5 0 0 0 0 0  0 0       0\n\nHowever, if use the mean of each row, instead of literally just counting 1s and 0s, then we can be fooled by rows with larger numbers, like row 4 above. So, let’s make a function that only counts 1s and 0s, which is the problem we were asked to solve.\n\n\n# function to count only ones and zeros and report TRUE or\n# FALSE if more 1s, and convert the logical to integer\nis_more_1s <- function(x) {\n  as.integer(\n    sum(x == 1, na.rm = T) > sum(x == 0, na.rm = T)\n  )\n}\n\n# this gets row 4 correct\ndf$more_1s <- apply(df, 1, is_more_1s)\n\ndf\n\n\n  a b c d e  f g more_1s\n1 1 1 1 1 1  1 1       1\n2 0 0 0 1 1  1 1       1\n3 1 1 1 0 0 NA 1       1\n4 0 0 1 9 1  0 0       0\n5 0 0 0 0 0  0 0       0\n\nThis function only counts 1s and 0s, ignoring the 9 in row 4 and therefore giving us the correct answer in our new column. The function also returns a 1 if TRUE and a 0 if FALSE.\nlibrary(tidyverse)\nLet’s try a tidyverse solution that uses rowwise() instead of apply()\n\n\n#---- tidyverse solution ----\n\n# sample data\ndf <- data.frame(\n  a = as.integer(c(1,0,1,0,0)),\n  b = as.integer(c(1,0,1,0,0)),\n  c = as.integer(c(1,0,1,1,0)),\n  d = as.integer(c(1,1,0,9,0)),\n  e = as.integer(c(1,1,0,1,0)),\n  f = as.integer(c(1,1,NA,0,0)),\n  g = as.integer(c(1,1,1,0,0))\n)\n\nlibrary(tidyverse)\n\ntb <- as_tibble(df)\ntb %>% \n  rowwise() %>% \n  mutate(more_1s = is_more_1s(c_across(a:g))) # only a through g\n\n\n# A tibble: 5 x 8\n# Rowwise: \n      a     b     c     d     e     f     g more_1s\n  <int> <int> <int> <int> <int> <int> <int>   <int>\n1     1     1     1     1     1     1     1       1\n2     0     0     0     1     1     1     1       1\n3     1     1     1     0     0    NA     1       1\n4     0     0     1     9     1     0     0       0\n5     0     0     0     0     0     0     0       0\n\nHere, rowwise() makes sure we are counting across rows, and c_across() lets us constrain which columns we consider, which is part of the problem we were asked to solve.\nlibrary(data.table)\nUsing only data.table we don’t have rowwise() from dplyr, so we use base R’s apply() again. We use .SD and .SDcols to specify which columns we want to be constrained to.\n\n\n#---- data.table solution ----\n\n# sample data\ndf <- data.frame(\n  a = as.integer(c(1,0,1,0,0)),\n  b = as.integer(c(1,0,1,0,0)),\n  c = as.integer(c(1,0,1,1,0)),\n  d = as.integer(c(1,1,0,9,0)),\n  e = as.integer(c(1,1,0,1,0)),\n  f = as.integer(c(1,1,NA,0,0)),\n  g = as.integer(c(1,1,1,0,0))\n)\n\nlibrary(data.table)\n\ndt <- as.data.table(df)\nmy_cols <- letters[1:7] # only a through g\ndt[, more_1s := apply(.SD, 1, is_more_1s), .SDcols = my_cols]\n\ndt\n\n\n   a b c d e  f g more_1s\n1: 1 1 1 1 1  1 1       1\n2: 0 0 0 1 1  1 1       1\n3: 1 1 1 0 0 NA 1       1\n4: 0 0 1 9 1  0 0       0\n5: 0 0 0 0 0  0 0       0\n\n\n\n\n",
+    "preview": "posts/2021-03-12-by-row-in-base-r-tidyverse-and-datatable/solution.png",
+    "last_modified": "2021-03-12T10:30:27-05:00",
+    "input_file": "by-row-in-base-r-tidyverse-and-datatable.utf8.md",
+    "preview_width": 396,
+    "preview_height": 260
+  },
+  {
     "path": "posts/2021-02-24-covid-19-death-tracking-app/",
     "title": "COVID-19 Death Tracking App",
     "description": "An R Shiny app designed for my family to track a single metric and to promote data literacy by including explanatory text with the data visualizations.",
