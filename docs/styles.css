@@ -13,8 +13,6 @@ html, body, p {
   font-family: Roboto, Arial, sans-serif;
   background: #fff;
   color: #555;
-  font-size: 1.1em;
-  line-height: 1.3em;
 }
 
 code {
@@ -35,6 +33,17 @@ h1, h2, h3 {
 
 h4, h5, h6 {
   font-family: Roboto, Arial, sans-serif;
+}
+
+h1 {
+    display: block;
+    font-size: 2rem;
+    line-height: 2.75rem;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
 }
 
 .distill-site-nav {

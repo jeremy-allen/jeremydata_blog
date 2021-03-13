@@ -12,7 +12,17 @@
       <link>https://jeremydata.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 12 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Counts and Cumulative Sums by Group</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2021-03-13-counts-and-cumulative-sums-by-group</link>
+      <description>A short description of the post.</description>
+      <category>data.table</category>
+      <category>time series</category>
+      <guid>https://jeremydata.com/posts/2021-03-13-counts-and-cumulative-sums-by-group</guid>
+      <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>By Row in Base R, Tidyverse, and data.table</title>
       <dc:creator>Jeremy Allen</dc:creator>

@@ -1,0 +1,79 @@
+---
+title: "Counts and Cumulative Sums by Group"
+description: |
+  A short description of the post.
+author:
+  - name: Jeremy Allen
+    url: https://jeremydata.com
+date: 03-13-2021
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+    - data.table
+    - time series
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Problem:
+
+**In a time series, how do I add a counter and cumulative sum that resets every 30 minutes?**  
+
+I keep forgetting about R's `seq_len()` function. I'm writing about it here, so when I inevitably google for it I can find it here. Let's see how it works.
+
+We will be using [**data.table**](https://rdatatable.gitlab.io/data.table/index.html) for this example. 
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+library(data.table)
+library(lubridate)
+
+
+#---- fake data ----
+
+times <- seq.POSIXt(
+ from = as.POSIXct("2021-03-12 08:00:00"),
+ to =   as.POSIXct("2021-03-12 12:00:00"),
+ by = "sec"
+)
+
+accounts <- seq(1111, 9999, by = 1000)
+
+amounts <- seq(1, 5000, by = 1)
+
+set.seed(865)
+
+dt <- data.table(
+ datetime = sample(times, 1500, replace = TRUE),
+ account = sample(accounts, 1500, replace = TRUE),
+ amount = sample(amounts, 1500, replace = TRUE)
+)
+
+# order by account and datetime
+setkeyv(dt, c("account", "datetime"))
+
+```
+
+## n = seq_len(.N) By Group Row Number in data.table  
+
+After making our fake time series data, we can uses `seq_len(.N)` along with the `by` argument in data.table to add a counter that resets for each 30-minute group. Notice the transformation of a variable within the `by =` of the data.table.
+
+**Cumulative sum by 30-minute periods**  
+
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE, layout="l-body-outset"}
+
+#---- counts and sums ----
+
+# count and sum by half hour using seq_len() to show 
+# each observation's position within its 30-minute group
+dt[,
+   `:=`(n_by_30_mins = seq_len(.N), cumulative_amount = cumsum(amount)) ,
+   by = .(account, floor_date(datetime, "30 minutes"))]
+
+head(dt, 50)
+```
