@@ -17,11 +17,12 @@
       <title>Counts and Cumulative Sums by Group</title>
       <dc:creator>Jeremy Allen</dc:creator>
       <link>https://jeremydata.com/posts/2021-03-13-counts-and-cumulative-sums-by-group</link>
-      <description>A short description of the post.</description>
+      <description>In a time series, how do I add a counter and cumulative sum that resets every 30 minutes?</description>
       <category>data.table</category>
       <category>time series</category>
       <guid>https://jeremydata.com/posts/2021-03-13-counts-and-cumulative-sums-by-group</guid>
       <pubDate>Sat, 13 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2021-03-13-counts-and-cumulative-sums-by-group/counts.png" medium="image" type="image/png" width="1766" height="1130"/>
     </item>
     <item>
       <title>By Row in Base R, Tidyverse, and data.table</title>
