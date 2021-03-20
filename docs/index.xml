@@ -12,7 +12,20 @@
       <link>https://jeremydata.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 13 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 20 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Video Game Title Emotions - a text analysis</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2021-03-20-video-game-title-emotions-a-text-analysis</link>
+      <description>Using R to create a data visualization of the emotional content of video game titles</description>
+      <category>tidyverse</category>
+      <category>dataviz</category>
+      <category>ggplot2</category>
+      <category>tidytext</category>
+      <guid>https://jeremydata.com/posts/2021-03-20-video-game-title-emotions-a-text-analysis</guid>
+      <pubDate>Sat, 20 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2021-03-20-video-game-title-emotions-a-text-analysis/title_emotions.png" medium="image" type="image/png" width="3632" height="2500"/>
+    </item>
     <item>
       <title>Counts and Cumulative Sums by Group</title>
       <dc:creator>Jeremy Allen</dc:creator>

@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
   <meta name="generator" content="distill" />
-  <link rel="alternate" type="application/rss+xml" href="https://jeremydata.com/index.xml" />
 
   <style type="text/css">
   /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
@@ -86,639 +85,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-  <title>jeremydata: Blog posts</title>
+  <title>Video Game Title Emotions - a text analysis</title>
+
+  <meta property="description" itemprop="description" content="Using R to create a data visualization of the emotional content of video game titles"/>
 
 
-  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
-  <link rel="icon" type="image/png" href="images/favicon32x32.png"/>
-
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2021-03-20"/>
+  <meta property="article:created" itemprop="dateCreated" content="2021-03-20"/>
+  <meta name="article:author" content="Jeremy Allen"/>
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="jeremydata: Blog posts"/>
+  <meta property="og:title" content="Video Game Title Emotions - a text analysis"/>
   <meta property="og:type" content="article"/>
+  <meta property="og:description" content="Using R to create a data visualization of the emotional content of video game titles"/>
   <meta property="og:locale" content="en_US"/>
-  <meta property="og:site_name" content="jeremydata"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="jeremydata: Blog posts"/>
-  <meta property="twitter:site" content="@jeremy_data"/>
-  <meta property="twitter:creator" content="Jeremy Allen"/>
+  <meta property="twitter:title" content="Video Game Title Emotions - a text analysis"/>
+  <meta property="twitter:description" content="Using R to create a data visualization of the emotional content of video game titles"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site","listing"]}},"value":[{"type":"character","attributes":{},"value":["Blog posts"]},{"type":"character","attributes":{},"value":["distill::distill_website"]},{"type":"character","attributes":{},"value":["posts"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Video Game Title Emotions - a text analysis"]},{"type":"character","attributes":{},"value":["Using R to create a data visualization of the emotional content of video game titles\n"]},{"type":"character","attributes":{},"value":["title_emotions.png"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Jeremy Allen"]},{"type":"character","attributes":{},"value":["https://jeremydata.com"]}]}]},{"type":"character","attributes":{},"value":["03-20-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["tidyverse","dataviz","ggplot2","tidytext"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["title_emotions.png","video-game-title-emotions-a-text-analysis_files/anchor-4.2.2/anchor.min.js","video-game-title-emotions-a-text-analysis_files/bowser-1.9.3/bowser.min.js","video-game-title-emotions-a-text-analysis_files/distill-2.2.21/template.v2.js","video-game-title-emotions-a-text-analysis_files/header-attrs-2.6/header-attrs.js","video-game-title-emotions-a-text-analysis_files/jquery-1.11.3/jquery.min.js","video-game-title-emotions-a-text-analysis_files/popper-2.6.0/popper.min.js","video-game-title-emotions-a-text-analysis_files/tippy-6.2.7/tippy-bundle.umd.min.js","video-game-title-emotions-a-text-analysis_files/tippy-6.2.7/tippy-light-border.css","video-game-title-emotions-a-text-analysis_files/tippy-6.2.7/tippy.css","video-game-title-emotions-a-text-analysis_files/tippy-6.2.7/tippy.umd.min.js","video-game-title-emotions-a-text-analysis_files/webcomponents-2.0.0/webcomponents.js"]}
+  </script>
   <!--radix_placeholder_navigation_in_header-->
-  <meta name="distill:offset" content=""/>
-
-  <script type="application/javascript">
-
-    window.headroom_prevent_pin = false;
-
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-
-      // initialize headroom for banner
-      var header = $('header').get(0);
-      var headerHeight = header.offsetHeight;
-      var headroom = new Headroom(header, {
-        tolerance: 5,
-        onPin : function() {
-          if (window.headroom_prevent_pin) {
-            window.headroom_prevent_pin = false;
-            headroom.unpin();
-          }
-        }
-      });
-      headroom.init();
-      if(window.location.hash)
-        headroom.unpin();
-      $(header).addClass('headroom--transition');
-
-      // offset scroll location for banner on hash change
-      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
-      window.addEventListener("hashchange", function(event) {
-        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
-      });
-
-      // responsive menu
-      $('.distill-site-header').each(function(i, val) {
-        var topnav = $(this);
-        var toggle = topnav.find('.nav-toggle');
-        toggle.on('click', function() {
-          topnav.toggleClass('responsive');
-        });
-      });
-
-      // nav dropdowns
-      $('.nav-dropbtn').click(function(e) {
-        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
-        $(this).parent().siblings('.nav-dropdown')
-           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $("body").click(function(e){
-        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
-      });
-      $(".nav-dropdown").click(function(e){
-        e.stopPropagation();
-      });
-    });
-  </script>
-
-  <style type="text/css">
-
-  /* Theme (user-documented overrideables for nav appearance) */
-
-  .distill-site-nav {
-    color: rgba(255, 255, 255, 0.8);
-    background-color: #0F2E3D;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: white;
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-
-  .distill-site-header {
-
-  }
-
-  .distill-site-footer {
-
-  }
-
-
-  /* Site Header */
-
-  .distill-site-header {
-    width: 100%;
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .distill-site-header .nav-left {
-    display: inline-block;
-    margin-left: 8px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header .nav-left {
-      margin-left: 0;
-    }
-  }
-
-
-  .distill-site-header .nav-right {
-    float: right;
-    margin-right: 8px;
-  }
-
-  .distill-site-header a,
-  .distill-site-header .title {
-    display: inline-block;
-    text-align: center;
-    padding: 14px 10px 14px 10px;
-  }
-
-  .distill-site-header .title {
-    font-size: 18px;
-    min-width: 150px;
-  }
-
-  .distill-site-header .logo {
-    padding: 0;
-  }
-
-  .distill-site-header .logo img {
-    display: none;
-    max-height: 20px;
-    width: auto;
-    margin-bottom: -4px;
-  }
-
-  .distill-site-header .nav-image img {
-    max-height: 18px;
-    width: auto;
-    display: inline-block;
-    margin-bottom: -3px;
-  }
-
-
-
-  @media screen and (min-width: 1000px) {
-    .distill-site-header .logo img {
-      display: inline-block;
-    }
-    .distill-site-header .nav-left {
-      margin-left: 20px;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 20px;
-    }
-    .distill-site-header .title {
-      padding-left: 12px;
-    }
-  }
-
-
-  .distill-site-header .nav-toggle {
-    display: none;
-  }
-
-  .nav-dropdown {
-    display: inline-block;
-    position: relative;
-  }
-
-  .nav-dropdown .nav-dropbtn {
-    border: none;
-    outline: none;
-    color: rgba(255, 255, 255, 0.8);
-    padding: 16px 10px;
-    background-color: transparent;
-    font-family: inherit;
-    font-size: inherit;
-    font-weight: inherit;
-    margin: 0;
-    margin-top: 1px;
-    z-index: 2;
-  }
-
-  .nav-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: white;
-    min-width: 200px;
-    border: 1px solid rgba(0,0,0,0.15);
-    border-radius: 4px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
-    z-index: 1;
-    margin-top: 2px;
-    white-space: nowrap;
-    padding-top: 4px;
-    padding-bottom: 4px;
-  }
-
-  .nav-dropdown-content hr {
-    margin-top: 4px;
-    margin-bottom: 4px;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  }
-
-  .nav-dropdown-active {
-    display: block;
-  }
-
-  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
-    color: black;
-    padding: 6px 24px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-  }
-
-  .nav-dropdown-content .nav-dropdown-header {
-    display: block;
-    padding: 5px 24px;
-    padding-bottom: 0;
-    text-transform: uppercase;
-    font-size: 14px;
-    color: #999999;
-    white-space: nowrap;
-  }
-
-  .nav-dropdown:hover .nav-dropbtn {
-    color: white;
-  }
-
-  .nav-dropdown-content a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .nav-right .nav-dropdown-content {
-    margin-left: -45%;
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
-    .distill-site-header a.nav-toggle {
-      float: right;
-      display: block;
-    }
-    .distill-site-header .title {
-      margin-left: 0;
-    }
-    .distill-site-header .nav-right {
-      margin-right: 0;
-    }
-    .distill-site-header {
-      overflow: hidden;
-    }
-    .nav-right .nav-dropdown-content {
-      margin-left: 0;
-    }
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-header.responsive {position: relative; min-height: 500px; }
-    .distill-site-header.responsive a.nav-toggle {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .distill-site-header.responsive a,
-    .distill-site-header.responsive .nav-dropdown {
-      display: block;
-      text-align: left;
-    }
-    .distill-site-header.responsive .nav-left,
-    .distill-site-header.responsive .nav-right {
-      width: 100%;
-    }
-    .distill-site-header.responsive .nav-dropdown {float: none;}
-    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
-    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
-      display: block;
-      width: 100%;
-      text-align: left;
-    }
-  }
-
-  /* Site Footer */
-
-  .distill-site-footer {
-    width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-    z-index: 3;
-    margin-top: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    text-align: center;
-  }
-
-  /* Headroom */
-
-  d-title {
-    padding-top: 6rem;
-  }
-
-  @media print {
-    d-title {
-      padding-top: 4rem;
-    }
-  }
-
-  .headroom {
-    z-index: 1000;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  .headroom--transition {
-    transition: all .4s ease-in-out;
-  }
-
-  .headroom--unpinned {
-    top: -100px;
-  }
-
-  .headroom--pinned {
-    top: 0;
-  }
-
-  /* adjust viewport for navbar height */
-  /* helps vertically center bootstrap (non-distill) content */
-  .min-vh-100 {
-    min-height: calc(100vh - 100px) !important;
-  }
-
-  </style>
-
-  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
-  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
-  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
-  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
-
-  <script type="application/javascript">
-
-  function getMeta(metaName) {
-    var metas = document.getElementsByTagName('meta');
-    for (let i = 0; i < metas.length; i++) {
-      if (metas[i].getAttribute('name') === metaName) {
-        return metas[i].getAttribute('content');
-      }
-    }
-    return '';
-  }
-
-  function offsetURL(url) {
-    var offset = getMeta('distill:offset');
-    return offset ? offset + '/' + url : url;
-  }
-
-  function createFuseIndex() {
-
-    // create fuse index
-    var options = {
-      keys: [
-        { name: 'title', weight: 20 },
-        { name: 'categories', weight: 15 },
-        { name: 'description', weight: 10 },
-        { name: 'contents', weight: 5 },
-      ],
-      ignoreLocation: true,
-      threshold: 0
-    };
-    var fuse = new window.Fuse([], options);
-
-    // fetch the main search.json
-    return fetch(offsetURL('search.json'))
-      .then(function(response) {
-        if (response.status == 200) {
-          return response.json().then(function(json) {
-            // index main articles
-            json.articles.forEach(function(article) {
-              fuse.add(article);
-            });
-            // download collections and index their articles
-            return Promise.all(json.collections.map(function(collection) {
-              return fetch(offsetURL(collection)).then(function(response) {
-                if (response.status === 200) {
-                  return response.json().then(function(articles) {
-                    articles.forEach(function(article) {
-                      fuse.add(article);
-                    });
-                  })
-                } else {
-                  return Promise.reject(
-                    new Error('Unexpected status from search index request: ' +
-                              response.status)
-                  );
-                }
-              });
-            })).then(function() {
-              return fuse;
-            });
-          });
-
-        } else {
-          return Promise.reject(
-            new Error('Unexpected status from search index request: ' +
-                        response.status)
-          );
-        }
-      });
-  }
-
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-
-    // get search element (bail if we don't have one)
-    var searchEl = window.document.getElementById('distill-search');
-    if (!searchEl)
-      return;
-
-    createFuseIndex()
-      .then(function(fuse) {
-
-        // make search box visible
-        searchEl.classList.remove('hidden');
-
-        // initialize autocomplete
-        var options = {
-          autoselect: true,
-          hint: false,
-          minLength: 2,
-        };
-        window.autocomplete(searchEl, options, [{
-          source: function(query, callback) {
-            const searchOptions = {
-              isCaseSensitive: false,
-              shouldSort: true,
-              minMatchCharLength: 2,
-              limit: 10,
-            };
-            var results = fuse.search(query, searchOptions);
-            callback(results
-              .map(function(result) { return result.item; })
-            );
-          },
-          templates: {
-            suggestion: function(suggestion) {
-              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
-                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
-                : '';
-              var html = `
-                <div class="search-item">
-                  <h3>${suggestion.title}</h3>
-                  <div class="search-item-description">
-                    ${suggestion.description || ''}
-                  </div>
-                  <div class="search-item-preview">
-                    ${img}
-                  </div>
-                </div>
-              `;
-              return html;
-            }
-          }
-        }]).on('autocomplete:selected', function(event, suggestion) {
-          window.location.href = offsetURL(suggestion.path);
-        });
-        // remove inline display style on autocompleter (we want to
-        // manage responsive display via css)
-        $('.algolia-autocomplete').css("display", "");
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-
-  });
-
-  </script>
-
-  <style type="text/css">
-
-  .nav-search {
-    font-size: x-small;
-  }
-
-  /* Algolioa Autocomplete */
-
-  .algolia-autocomplete {
-    display: inline-block;
-    margin-left: 10px;
-    vertical-align: sub;
-    background-color: white;
-    color: black;
-    padding: 6px;
-    padding-top: 8px;
-    padding-bottom: 0;
-    border-radius: 6px;
-    border: 1px #0F2E3D solid;
-    width: 180px;
-  }
-
-
-  @media screen and (max-width: 768px) {
-    .distill-site-nav .algolia-autocomplete {
-      display: none;
-      visibility: hidden;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete {
-      display: inline-block;
-      visibility: visible;
-    }
-    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
-      margin-left: 0;
-      width: 400px;
-      max-height: 400px;
-    }
-  }
-
-  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 90%;
-    outline: none;
-    border: none;
-  }
-
-  .algolia-autocomplete .aa-hint {
-    color: #999;
-  }
-  .algolia-autocomplete .aa-dropdown-menu {
-    width: 550px;
-    max-height: 70vh;
-    overflow-x: visible;
-    overflow-y: scroll;
-    padding: 5px;
-    margin-top: 3px;
-    margin-left: -150px;
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px solid #999;
-    border-top: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
-    cursor: pointer;
-    padding: 5px 4px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
-    border-bottom: none;
-    margin-bottom: 2px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
-    overflow: hidden;
-    font-size: 0.8em;
-    line-height: 1.4em;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
-    font-size: 1rem;
-    margin-block-start: 0;
-    margin-block-end: 5px;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
-    display: inline-block;
-    overflow: hidden;
-    height: 2.8em;
-    width: 80%;
-    margin-right: 4%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
-    display: inline-block;
-    width: 15%;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
-    height: 3em;
-    width: auto;
-    display: none;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
-    display: initial;
-  }
-
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
-    background-color: #eee;
-  }
-  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
-    font-weight: bold;
-    font-style: normal;
-  }
-
-  </style>
-
-
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
 
@@ -2034,662 +1433,251 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
-  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
-  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
-  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
-  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
-  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
-  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
-  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
-  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <script src="video-game-title-emotions-a-text-analysis_files/header-attrs-2.6/header-attrs.js"></script>
+  <script src="video-game-title-emotions-a-text-analysis_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="video-game-title-emotions-a-text-analysis_files/popper-2.6.0/popper.min.js"></script>
+  <link href="video-game-title-emotions-a-text-analysis_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="video-game-title-emotions-a-text-analysis_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="video-game-title-emotions-a-text-analysis_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="video-game-title-emotions-a-text-analysis_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="video-game-title-emotions-a-text-analysis_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="video-game-title-emotions-a-text-analysis_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="video-game-title-emotions-a-text-analysis_files/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
-  <style type="text/css">
-  @import url('https://fonts.googleapis.com/css2?family=Inconsolata');
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono');
-  @import url('https://fonts.googleapis.com/css2?family=Roboto');
-
-
-  .distill-site-header .title {
-    font-family: Inconsolata, "Roboto Mono", Courier, Arial, sans-serif;
-    font-size: 1.5em;
-    font-weight: 500;
-  }
-
-  html, body, p {
-    font-family: Roboto, Arial, sans-serif;
-    background: #fff;
-    color: #555;
-    font-size: 1.1em;
-    line-height: 1.3em;
-  }
-
-  code {
-    font-family: Inconsolata, "Roboto Mono", Courier, Arial, sans-serif;
-    font-size: .9em;
-  }
-
-  .description,
-  .posts-list .description h2,
-  .posts-list .description p {
-    font-family: Roboto, Arial, sans-serif;
-  }
-
-  h1, h2, h3 {
-    font-family: Roboto, Arial, sans-serif;
-    font-weight: bold;
-  }
-
-  h4, h5, h6 {
-    font-family: Roboto, Arial, sans-serif;
-  }
-
-  .distill-site-nav {
-    font-family: Roboto, Arial, sans-serif;
-    color: #555;
-    background-color: #f0f0f5;
-    font-size: 15px;
-    font-weight: 300;
-  }
-
-  .distill-site-nav a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .distill-site-nav a:hover {
-    color: #e96384;
-  }
-
-  .distill-site-header {
-  }
-
-  .distill-site-footer {
-  }
-
-  @media print {
-    .distill-site-nav {
-      display: none;
-    }
-  }
-  </style>
   <!--/radix_placeholder_site_in_header-->
 
-  <link rel="stylesheet" href="styles.css" type="text/css"/>
 
 </head>
 
-<body class="layout-listing">
+<body>
 
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Blog posts","authors":[]}
+{"title":"Video Game Title Emotions - a text analysis","description":"Using R to create a data visualization of the emotional content of video game titles","authors":[{"author":"Jeremy Allen","authorURL":"https://jeremydata.com","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-03-20T00:00:00.000+00:00","citationText":"Allen, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
 <!--radix_placeholder_navigation_before_body-->
-<header class="header header--fixed" role="banner">
-<nav class="distill-site-nav distill-site-header">
-<div class="nav-left">
-<a class="logo" href="https://jeremydata.com">
-<img src="images/android_chrome_192x192.png" alt="Logo"/>
-</a>
-<a href="index.html" class="title">jeremydata</a>
-<input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
-</div>
-<div class="nav-right">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="index.xml">
-<i class="fa fa-rss" aria-hidden="true"></i>
-</a>
-<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
-</div>
-</nav>
-</header>
 <!--/radix_placeholder_navigation_before_body-->
 <!--radix_placeholder_site_before_body-->
 <!--/radix_placeholder_site_before_body-->
-<!--radix_placeholder_article_listing-->
-
-
-<script type="application/javascript">
-
-function init_posts_list() {
-
-  function load_image(img) {
-    var src = $(img).attr('data-src');
-    if (src) {
-      $(img).attr('src', src);
-      $(img).load(function() {
-        img.removeAttribute('data-src');
-      });
-    }
-  }
-
-  function set_posts_visible(posts, visible) {
-    if (visible) {
-
-      // show bottom border by default
-      $(posts).removeClass('post-preview-last');
-
-      // apply limits if need be
-      var max_posts = 25;
-      var apply_limits = $('.posts-container').hasClass('posts-apply-limit');
-      if (apply_limits && posts.length > max_posts) {
-        posts = $(posts).slice(0, max_posts);
-      } else {
-        $('.posts-more a').addClass('hidden');
-      }
-
-      // apply last style
-      $(posts.slice(-1)[0]).addClass('post-preview-last');
-
-      $(posts).removeClass('hidden');
-      $(posts).find('img[data-src]').each(function(i, img) {
-        load_image(img);
-      });
-    } else {
-      $(posts).addClass('hidden');
-    }
-  }
-
-  function apply_hash_filter() {
-
-    // clear active state
-    $('.categories .active').removeClass('active');
-
-    // mark all posts invisible to start
-    set_posts_visible($('.posts-list').children('a'), false);
-
-    // if we have a hash filter
-    if (window.location.hash && window.location.hash.startsWith("#category:")) {
-
-      // mark posts that match the category visible
-      var page_category = window.location.hash.replace(/^#category:/, "");
-      var posts = $('.post-metadata').map(function(idx, script) {
-        var metadata = $.parseJSON($(script).html());
-        var post = null;
-        $.each(metadata.categories, function(idx, category) {
-          category = category.replace(/ /g,"_");
-          if ((page_category || '').toLowerCase() === "articles" || category === page_category) {
-            post = $(script).parent().get();
-            return false;
-          }
-        });
-        return post;
-      });
-      set_posts_visible(posts, true);
-
-      // mark the hash active
-      $('.categories li>a[href="' + window.location.hash + '"]').addClass('active');
-
-      // update the list_caption
-      var list_caption = $('.posts-list-caption');
-      var caption = (page_category || '').toLowerCase() === "articles"
-        ? list_caption.attr('data-caption')
-        : ('Category: ' + page_category.replace(/_/g," "));
-      list_caption.text(caption);
-
-    } else {
-
-      // no hash filter, make all posts visible (subject to max display)
-      set_posts_visible($('.posts-list').children(), true);
-
-      // reset list caption
-      var list_caption = $('.posts-list-caption');
-      list_caption.text(list_caption.attr('data-caption'));
-
-
-    }
-  }
-
-  // more articles
-  function apply_post_limits(apply) {
-    if (apply) {
-      $('.posts-container').addClass('posts-apply-limit');
-      $('.posts-more a').removeClass('hidden');
-    } else {
-      $('.posts-container').removeClass('posts-apply-limit');
-      $('.posts-more a').addClass('hidden');
-    }
-  }
-
-  // click handling for tags
-  $('.dt-tag').click(function(ev) {
-    window.location.hash = '#category:' + $(this).text().replace(/ /g, "_");
-    return false;
-  })
-
-  // hash filter handling
-  apply_hash_filter();
-  $(window).on('hashchange',function() {
-    apply_post_limits(true);
-    apply_hash_filter();
-  });
-
-  // more articles link
-  $('.posts-more a').click(function(e) {
-    e.preventDefault();
-    apply_post_limits(false);
-    apply_hash_filter();
-    return false;
-  });
-
-}
-
-</script>
-
-
-
-<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
-<div class="posts-list">
-<h1 class="posts-list-caption" data-caption="Blog posts">Blog posts</h1>
-<a href="posts/2021-03-20-video-game-title-emotions-a-text-analysis/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["tidyverse","dataviz","ggplot2","tidytext"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 20, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-03-20-video-game-title-emotions-a-text-analysis/title_emotions.png"/>
-</div>
-<div class="description">
-<h2>Video Game Title Emotions - a text analysis</h2>
-<div class="dt-tags">
-<div class="dt-tag">tidyverse</div>
-<div class="dt-tag">dataviz</div>
-<div class="dt-tag">ggplot2</div>
-<div class="dt-tag">tidytext</div>
-</div>
-<p>Using R to create a data visualization of the emotional content of video game titles</p>
-</div>
-</a>
-<a href="posts/2021-03-13-counts-and-cumulative-sums-by-group/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["data.table","time series"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 13, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-03-13-counts-and-cumulative-sums-by-group/counts.png"/>
-</div>
-<div class="description">
-<h2>Counts and Cumulative Sums by Group</h2>
-<div class="dt-tags">
-<div class="dt-tag">data.table</div>
-<div class="dt-tag">time series</div>
-</div>
-<p>In a time series, how do I add a counter and cumulative sum that resets every 30 minutes?</p>
-</div>
-</a>
-<a href="posts/2021-03-12-by-row-in-base-r-tidyverse-and-datatable/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["rowwise","tidyvere","data.table"]}</script>
-<div class="metadata">
-<div class="publishedDate">March 12, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-03-12-by-row-in-base-r-tidyverse-and-datatable/solution.png"/>
-</div>
-<div class="description">
-<h2>By Row in Base R, Tidyverse, and data.table</h2>
-<div class="dt-tags">
-<div class="dt-tag">rowwise</div>
-<div class="dt-tag">tidyvere</div>
-<div class="dt-tag">data.table</div>
-</div>
-<p>Which rows have more 1s than 0s?.</p>
-</div>
-</a>
-<a href="posts/2021-02-24-covid-19-death-tracking-app/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["shiny","web scraping","plotly","ggplot2"]}</script>
-<div class="metadata">
-<div class="publishedDate">Feb. 24, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-02-24-covid-19-death-tracking-app/app_screenshot.png"/>
-</div>
-<div class="description">
-<h2>COVID-19 Death Tracking App</h2>
-<div class="dt-tags">
-<div class="dt-tag">shiny</div>
-<div class="dt-tag">web scraping</div>
-<div class="dt-tag">plotly</div>
-<div class="dt-tag">ggplot2</div>
-</div>
-<p>An R Shiny app designed for my family to track a single metric and to promote data literacy by including explanatory text with the data visualizations.</p>
-</div>
-</a>
-<a href="posts/2021-02-22-web-scraping-and-text-analysis-of-gendered-christian-book-descriptions/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["web scraping","tidyverse","tidytext","tidytext","nlp"]}</script>
-<div class="metadata">
-<div class="publishedDate">Feb. 22, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img src="posts/2021-02-22-web-scraping-and-text-analysis-of-gendered-christian-book-descriptions/women_men_word_tfidf.png"/>
-</div>
-<div class="description">
-<h2>Use R and tidytext to Scrape and Analyze Word Variance in Gendered Christian Book Descriptions</h2>
-<div class="dt-tags">
-<div class="dt-tag">web scraping</div>
-<div class="dt-tag">tidyverse</div>
-<div class="dt-tag">tidytext</div>
-<div class="dt-tag">tidytext</div>
-<div class="dt-tag">nlp</div>
-</div>
-<p>How does word usage vary in Christian book descriptions marketed distinctly for men and women?</p>
-</div>
-</a>
-<a href="posts/2021-02-21-tidyverse-to-army-how-copy-over/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["shiny","nlp","rvest","tidyverse","web scraping","purrr"]}</script>
-<div class="metadata">
-<div class="publishedDate">Feb. 21, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2021-02-21-tidyverse-to-army-how-copy-over/website-screenshot.png"/>
-</div>
-<div class="description">
-<h2>Tidyverse to Army. How Copy? Over.</h2>
-<div class="dt-tags">
-<div class="dt-tag">shiny</div>
-<div class="dt-tag">nlp</div>
-<div class="dt-tag">rvest</div>
-<div class="dt-tag">tidyverse</div>
-<div class="dt-tag">web scraping</div>
-<div class="dt-tag">purrr</div>
-</div>
-<p>Helping the Army rename their Confederate-named bases with some help from R's tidyverse, rvest, quanteda, and Shiny</p>
-</div>
-</a>
-<a href="posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["racism","sociology","dataviz","ggplot2"]}</script>
-<div class="metadata">
-<div class="publishedDate">Feb. 21, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2021-02-21-using-rs-ggplot2-to-recreate-a-hand-drawn-web-du-bois-data-visualization/before_after.png"/>
-</div>
-<div class="description">
-<h2>Using R's ggplot2 to recreate a hand-drawn W.E.B. Du Bois data visualization</h2>
-<div class="dt-tags">
-<div class="dt-tag">racism</div>
-<div class="dt-tag">sociology</div>
-<div class="dt-tag">dataviz</div>
-<div class="dt-tag">ggplot2</div>
-</div>
-<p>fine-tuning margins, lables, and annotations</p>
-</div>
-</a>
-<a href="posts/2021-02-16-scrape-hundreds-of-pdf-documents-from-the-web-with-r-and-rvest/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["tidyverse","web scraping","rvest","purrr","polite"]}</script>
-<div class="metadata">
-<div class="publishedDate">Feb. 16, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2021-02-16-scrape-hundreds-of-pdf-documents-from-the-web-with-r-and-rvest/files.png"/>
-</div>
-<div class="description">
-<h2>Scrape Hundreds of PDF Documents From the Web with R and rvest</h2>
-<div class="dt-tags">
-<div class="dt-tag">tidyverse</div>
-<div class="dt-tag">web scraping</div>
-<div class="dt-tag">rvest</div>
-<div class="dt-tag">purrr</div>
-<div class="dt-tag">polite</div>
-</div>
-<p>Safely download all complaints, affidavits, and indictments for all capitol attackers</p>
-</div>
-</a>
-<a href="posts/2021-02-15-shiny-holiday-party/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["shiny","fun"]}</script>
-<div class="metadata">
-<div class="publishedDate">Feb. 15, 2021</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2021-02-15-shiny-holiday-party/site_screenshot.png"/>
-</div>
-<div class="description">
-<h2>Shiny Holiday Party</h2>
-<div class="dt-tags">
-<div class="dt-tag">shiny</div>
-<div class="dt-tag">fun</div>
-</div>
-<p>Fun Shiny app to draw names at the office party</p>
-</div>
-</a>
-<a href="posts/2020-05-17-twitter-bookmarks/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">May 17, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2020-05-17-twitter-bookmarks/preview.png"/>
-</div>
-<div class="description">
-<h2>Twitter Bookmarks</h2>
-<div class="dt-tags"></div>
-<p>Recently bookmarked tweets worth sharing.</p>
-</div>
-</a>
-<a href="posts/2020-05-14-twitter-by-location/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["twitter","web scraping","api","geocoding","tables"]}</script>
-<div class="metadata">
-<div class="publishedDate">May 14, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2020-05-14-twitter-by-location/tweet_table.png"/>
-</div>
-<div class="description">
-<h2>Twitter by Location</h2>
-<div class="dt-tags">
-<div class="dt-tag">twitter</div>
-<div class="dt-tag">web scraping</div>
-<div class="dt-tag">api</div>
-<div class="dt-tag">geocoding</div>
-<div class="dt-tag">tables</div>
-</div>
-<p>Make functions that will gather tweets by keyword in multiple geographic locations, find the most resonating and most activating tweets in each city and present them in a pretty table for reading</p>
-</div>
-</a>
-<a href="posts/2020-05-12-scrape-and-clean-an-online-table/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">May 12, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2020-05-12-scrape-and-clean-an-online-table/scrape-and-clean-an-online-table_files/figure-html5/plot-1.png"/>
-</div>
-<div class="description">
-<h2>Scrape, Clean, Join, Plot</h2>
-<div class="dt-tags"></div>
-<p>Write a function to scrape an online table, then use data.table to prep it for analysis. Use text from the table to add text annotations in a ggplot2 bar plot.</p>
-</div>
-</a>
-<a href="posts/2020-05-11-find-index-of-first-instance/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">May 11, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2020-05-11-find-index-of-first-instance/index_benchmark.png"/>
-</div>
-<div class="description">
-<h2>Find Index of First Instance</h2>
-<div class="dt-tags"></div>
-<p>Find one thing with another thing. We'll speed test various data.table and tidyverse methods for finding the position of the first match and use that to index another column.</p>
-</div>
-</a>
-<a href="posts/2020-05-01-order-months/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
-<div class="metadata">
-<div class="publishedDate">May 1, 2020</div>
-<div class="dt-authors">
-<div class="dt-author">Jeremy Allen</div>
-</div>
-</div>
-<div class="thumbnail">
-<img data-src="posts/2020-05-01-order-months/order_months.png"/>
-</div>
-<div class="description">
-<h2>Order Months</h2>
-<div class="dt-tags"></div>
-<p>Produce a vector of month names ending with the current month.</p>
-</div>
-</a>
-</div>
-<div class="posts-sidebar">
-<div class="sidebar-section categories">
-<h3>Categories</h3>
-<ul>
-<li>
-<a href="#category:articles">articles</a>
-<span class="category-count">(14)</span>
-</li>
-<li>
-<a href="#category:api">api</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:data.table">data.table</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:dataviz">dataviz</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:fun">fun</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:geocoding">geocoding</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:ggplot2">ggplot2</a>
-<span class="category-count">(3)</span>
-</li>
-<li>
-<a href="#category:nlp">nlp</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:plotly">plotly</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:polite">polite</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:purrr">purrr</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:racism">racism</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:rowwise">rowwise</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:rvest">rvest</a>
-<span class="category-count">(2)</span>
-</li>
-<li>
-<a href="#category:shiny">shiny</a>
-<span class="category-count">(3)</span>
-</li>
-<li>
-<a href="#category:sociology">sociology</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:tables">tables</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:tidytext">tidytext</a>
-<span class="category-count">(3)</span>
-</li>
-<li>
-<a href="#category:tidyvere">tidyvere</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:tidyverse">tidyverse</a>
-<span class="category-count">(4)</span>
-</li>
-<li>
-<a href="#category:time_series">time series</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:twitter">twitter</a>
-<span class="category-count">(1)</span>
-</li>
-<li>
-<a href="#category:web_scraping">web scraping</a>
-<span class="category-count">(5)</span>
-</li>
-</ul>
-</div>
-</div>
-<div class="posts-more">
-<a href="#">More articles &raquo;</a>
-</div>
-</div>
-<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
-<h1>Blog posts</h1>
+<h1>Video Game Title Emotions - a text analysis</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt=tag">tidyverse</div>
+<div class="dt=tag">dataviz</div>
+<div class="dt=tag">ggplot2</div>
+<div class="dt=tag">tidytext</div>
+</div>
 <!--/radix_placeholder_categories-->
-
+<p><p>Using R to create a data visualization of the emotional content of video game titles</p></p>
 </div>
 
+<div class="d-byline">
+  Jeremy Allen <a href="https://jeremydata.com" class="uri">https://jeremydata.com</a> 
+  
+<br/>03-20-2021
+</div>
 
 <div class="d-article">
-<p><br></p>
+<div class="layout-chunk" data-layout="l-screen-inset">
+<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<img src="title_emotions.png" alt="Video Game Title Emotions" width="1816" />
+<p class="caption">
+Figure 1: Video Game Title Emotions
+</p>
+</div>
+</div>
+<h2 id="video-game-title-emotions---a-text-analysis">Video Game Title Emotions - a text analysis</h2>
+<p>This week’s <a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday challenge</a> offered video game data for analysis. I analyzed the text in the video game titles. Using the <a href="https://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm">NRC Emotion Lexicon</a> I measured the joy words and sad words in the titles by year.</p>
+<p>I used the <a href="https://www.tidytextmining.com/">tidytext package</a> to tokenize each years-worth of game titles and remove stop words and plotted the polar plots with the <a href="https://www.tidyverse.org/">gpglot2</a> package. Then I made word clouds using <a href="https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html">wordcloud2</a>. The <a href="https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html">clowplot package</a> was used to place screenshots of the wordclouds within the final image.</p>
+<p><a href="https://github.com/jeremy-allen/tidy-tues">Code is also on GitHub</a></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/lchiffon/wordcloud2'>wordcloud2</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://wilkelab.org/cowplot/'>cowplot</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/juliasilge/tidytext'>tidytext</a></span><span class='op'>)</span>
+
+
+<span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span>
+
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>stop_words</span><span class='op'>)</span>
+
+<span class='va'>nrc_types</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>pull</span><span class='op'>(</span><span class='va'>sentiment</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='va'>nrc_joy</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sentiment</span> <span class='op'>==</span> <span class='st'>"joy"</span><span class='op'>)</span>
+<span class='va'>nrc_sad</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/get_sentiments.html'>get_sentiments</a></span><span class='op'>(</span><span class='st'>"nrc"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sentiment</span> <span class='op'>==</span> <span class='st'>"sadness"</span><span class='op'>)</span>
+
+<span class='va'>stops</span> <span class='op'>&lt;-</span> <span class='va'>stop_words</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>bind_rows</span><span class='op'>(</span><span class='fu'>tibble</span><span class='op'>(</span>
+  word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"edition"</span>, <span class='st'>"online"</span>, <span class='st'>"ii"</span>, <span class='st'>"iii"</span>, <span class='st'>"iv"</span>, <span class='st'>"vi"</span>, <span class='st'>"vii"</span>,
+           <span class='st'>"viii"</span>, <span class='st'>"ix"</span>, <span class='st'>"definitive"</span>, <span class='st'>"remastered"</span><span class='op'>)</span>,
+  lexicon <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"jda"</span>, <span class='fl'>11</span><span class='op'>)</span><span class='op'>)</span>
+ <span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>games</span> <span class='op'>&lt;-</span> <span class='fu'>readr</span><span class='fu'>::</span><span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-03-16/games.csv'</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># function to get emotion words and output as list of two types</span>
+<span class='va'>get_emotion_words</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+ 
+ <span class='va'>name</span> <span class='op'>&lt;-</span> <span class='fu'>as_tibble</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>rename</span><span class='op'>(</span>gamename <span class='op'>=</span> <span class='va'>value</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>gamename</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span>gamename <span class='op'>=</span> <span class='fu'>str_remove_all</span><span class='op'>(</span><span class='va'>gamename</span>, <span class='st'>"&lt;U.....&gt;"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>select</span><span class='op'>(</span><span class='op'>-</span><span class='va'>n</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/pkg/tidytext/man/unnest_tokens.html'>unnest_tokens</a></span><span class='op'>(</span>
+   output <span class='op'>=</span> <span class='va'>word</span>,
+   input <span class='op'>=</span> <span class='va'>gamename</span>,
+   token <span class='op'>=</span> <span class='st'>"words"</span>,
+   to_lower <span class='op'>=</span> <span class='cn'>TRUE</span>,
+   strip_punct <span class='op'>=</span> <span class='cn'>TRUE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>anti_join</span><span class='op'>(</span><span class='va'>stops</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span>
+   <span class='fu'><a href='https://rdrr.io/r/base/nchar.html'>nchar</a></span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span> <span class='op'>&gt;</span> <span class='fl'>1</span>,              <span class='co'># must be more than one character</span>
+   <span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>"^[a-z]"</span><span class='op'>)</span>,   <span class='co'># must start with a letter</span>
+   <span class='fu'>str_detect</span><span class='op'>(</span><span class='va'>word</span>, <span class='st'>"[a-z]"</span><span class='op'>)</span>     <span class='co'># must not be only numbers</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>count</span><span class='op'>(</span><span class='va'>word</span>, sort <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>mutate</span><span class='op'>(</span>word <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/reorder.factor.html'>reorder</a></span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>n</span><span class='op'>)</span><span class='op'>)</span>
+ 
+ <span class='va'>emotion_words</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+  joy <span class='op'>=</span> <span class='va'>name</span> <span class='op'>%&gt;%</span> <span class='fu'>inner_join</span><span class='op'>(</span><span class='va'>nrc_joy</span><span class='op'>)</span>,
+  sad <span class='op'>=</span> <span class='va'>name</span> <span class='op'>%&gt;%</span> <span class='fu'>inner_join</span><span class='op'>(</span><span class='va'>nrc_sad</span><span class='op'>)</span>
+ <span class='op'>)</span>
+ 
+ <span class='va'>emotion_words</span>
+ 
+<span class='op'>}</span>
+
+<span class='va'>name_emotions</span> <span class='op'>&lt;-</span> <span class='va'>games</span> <span class='op'>%&gt;%</span>
+ <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>year</span> <span class='op'>&gt;</span> <span class='fl'>2014</span> <span class='op'>&amp;</span> <span class='va'>year</span> <span class='op'>&lt;</span> <span class='fl'>2021</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>summarise</span><span class='op'>(</span>sum_avg_players <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>avg</span><span class='op'>)</span>,
+           emotion_words <span class='op'>=</span> <span class='fu'>get_emotion_words</span><span class='op'>(</span><span class='va'>gamename</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>arrange</span><span class='op'>(</span><span class='va'>year</span><span class='op'>)</span>
+
+<span class='va'>emotions_scored</span> <span class='op'>&lt;-</span> <span class='va'>name_emotions</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>unnest</span><span class='op'>(</span><span class='va'>emotion_words</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>mutate</span><span class='op'>(</span>score <span class='op'>=</span> <span class='va'>n</span><span class='op'>*</span><span class='va'>sum_avg_players</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>year</span>, <span class='va'>sentiment</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>summarise</span><span class='op'>(</span>valence <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>score</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>ungroup</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>mutate</span><span class='op'>(</span>sentiment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>factor</a></span><span class='op'>(</span><span class='va'>sentiment</span>, levels <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"sadness"</span>, <span class='st'>"joy"</span><span class='op'>)</span>, order <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>joy_title_words</span> <span class='op'>&lt;-</span> <span class='va'>name_emotions</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>unnest</span><span class='op'>(</span><span class='va'>emotion_words</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>select</span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>sentiment</span>, freq <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sentiment</span> <span class='op'>==</span> <span class='st'>"joy"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>select</span><span class='op'>(</span><span class='op'>-</span><span class='va'>sentiment</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>summarise</span><span class='op'>(</span>freq <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>freq</span><span class='op'>)</span><span class='op'>)</span>
+
+<span class='va'>sad_title_words</span> <span class='op'>&lt;-</span> <span class='va'>name_emotions</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>unnest</span><span class='op'>(</span><span class='va'>emotion_words</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>select</span><span class='op'>(</span><span class='va'>word</span>, <span class='va'>sentiment</span>, freq <span class='op'>=</span> <span class='va'>n</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>sentiment</span> <span class='op'>==</span> <span class='st'>"sadness"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>select</span><span class='op'>(</span><span class='op'>-</span><span class='va'>sentiment</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>group_by</span><span class='op'>(</span><span class='va'>word</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+ <span class='fu'>summarise</span><span class='op'>(</span>freq <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>freq</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># open these in the viewer pane then screenshot and add screenshot to directory</span>
+<span class='va'>joy_cloud</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/wordcloud2/man/wordcloud2.html'>wordcloud2</a></span><span class='op'>(</span>
+ data <span class='op'>=</span> <span class='va'>joy_title_words</span>,
+ size <span class='op'>=</span> <span class='fl'>.7</span>,
+ gridSize <span class='op'>=</span> <span class='fl'>1</span>,
+ color <span class='op'>=</span> <span class='st'>"#e600e6"</span>,
+ backgroundColor <span class='op'>=</span> <span class='st'>"black"</span>,
+ minRotation <span class='op'>=</span> <span class='fl'>0</span>,
+ maxRotation <span class='op'>=</span> <span class='fl'>0</span>,
+ rotateRatio <span class='op'>=</span> <span class='fl'>0</span>,
+ shape <span class='op'>=</span> <span class='st'>"circle"</span>
+<span class='op'>)</span>
+
+<span class='va'>sad_cloud</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/wordcloud2/man/wordcloud2.html'>wordcloud2</a></span><span class='op'>(</span>
+ data <span class='op'>=</span> <span class='va'>sad_title_words</span>,
+ size <span class='op'>=</span> <span class='fl'>1.1</span>,
+ gridSize <span class='op'>=</span> <span class='fl'>1</span>,
+ color <span class='op'>=</span> <span class='st'>"#625062"</span>,
+ backgroundColor <span class='op'>=</span> <span class='st'>"black"</span>,
+ minRotation <span class='op'>=</span> <span class='fl'>0</span>,
+ maxRotation <span class='op'>=</span> <span class='fl'>0</span>,
+ rotateRatio <span class='op'>=</span> <span class='fl'>0</span>,
+ shape <span class='op'>=</span> <span class='st'>"circle"</span>
+<span class='op'>)</span>
+</code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>p</span> <span class='op'>&lt;-</span> <span class='va'>emotions_scored</span> <span class='op'>%&gt;%</span>
+ <span class='fu'>ggplot</span><span class='op'>(</span><span class='fu'>aes</span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>sentiment</span>, y <span class='op'>=</span> <span class='va'>valence</span>, fill <span class='op'>=</span> <span class='va'>sentiment</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>geom_bar</span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span>, width <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>scale_fill_manual</span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#e600e6"</span>, <span class='st'>"#625062"</span><span class='op'>)</span>, breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"joy"</span>, <span class='st'>"sadness"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>labs</span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>""</span>,
+      y <span class='op'>=</span> <span class='st'>""</span>,
+      title <span class='op'>=</span> <span class='st'>"Emotional Content of Words in Video Game Titles
+In all years, game titles consisted of more sad words than joy words."</span>,
+      subtitle <span class='op'>=</span> <span class='st'>"Emotional valence of words determined by the NRC Emotion Lexicon"</span>,
+      caption <span class='op'>=</span> <span class='st'>"Data source: SteamCharts | Data viz: @jeremy_data
+Reference: Emotions Evoked by Common Words and Phrases: Using Mechanical Turk to Create an Emotion Lexicon, Saif Mohammad and Peter Turney, In Proceedings of the NAACL-HLT 2010 Workshop on Computational Approaches to Analysis and Generation of Emotion in Text, June 2010, LA, California."</span>,
+      fill <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>coord_polar</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>facet_wrap</span><span class='op'>(</span><span class='op'>~</span> <span class='va'>year</span>, ncol <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>theme_minimal</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'>theme</span><span class='op'>(</span>
+  text <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>color <span class='op'>=</span> <span class='st'>"#cfafcf"</span><span class='op'>)</span>,
+  strip.text <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>12</span>, color <span class='op'>=</span> <span class='st'>"#cfafcf"</span><span class='op'>)</span>,
+  plot.title <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>34</span>, margin <span class='op'>=</span> <span class='fu'>margin</span><span class='op'>(</span><span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>.25</span>,<span class='fl'>0</span>, unit <span class='op'>=</span> <span class='st'>"cm"</span><span class='op'>)</span><span class='op'>)</span>,
+  plot.subtitle <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>24</span>, margin <span class='op'>=</span> <span class='fu'>margin</span><span class='op'>(</span><span class='fl'>.5</span>,<span class='fl'>0</span>,<span class='fl'>4</span>,<span class='fl'>0</span>, unit <span class='op'>=</span> <span class='st'>"cm"</span><span class='op'>)</span><span class='op'>)</span>,
+  plot.caption <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>14</span>, margin <span class='op'>=</span> <span class='fu'>margin</span><span class='op'>(</span><span class='fl'>24</span>,<span class='fl'>0</span>,<span class='fl'>0</span>,<span class='fl'>0</span>, unit <span class='op'>=</span> <span class='st'>"cm"</span><span class='op'>)</span><span class='op'>)</span>,
+  legend.box.margin <span class='op'>=</span> <span class='fu'>margin</span><span class='op'>(</span><span class='fl'>.25</span>,<span class='fl'>0</span>,<span class='fl'>2</span>,<span class='fl'>0</span>, unit <span class='op'>=</span> <span class='st'>"cm"</span><span class='op'>)</span>,
+  legend.position <span class='op'>=</span> <span class='st'>"top"</span>,
+  legend.text <span class='op'>=</span> <span class='fu'>element_text</span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>16</span><span class='op'>)</span>,
+  legend.spacing.x <span class='op'>=</span> <span class='fu'>unit</span><span class='op'>(</span><span class='fl'>1</span>, <span class='st'>'cm'</span><span class='op'>)</span>,
+  legend.text.align <span class='op'>=</span> <span class='fl'>0</span>,
+  panel.grid <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+  axis.title.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+  axis.title.y <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+  axis.text.x <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+  axis.text.y <span class='op'>=</span> <span class='fu'>element_blank</span><span class='op'>(</span><span class='op'>)</span>,
+  plot.margin <span class='op'>=</span> <span class='fu'>margin</span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>3</span>,<span class='fl'>.5</span>,<span class='fl'>3</span>, unit <span class='op'>=</span> <span class='st'>"cm"</span><span class='op'>)</span>,
+  plot.background <span class='op'>=</span> <span class='fu'>element_rect</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"black"</span><span class='op'>)</span>,
+ <span class='op'>)</span> 
+
+<span class='va'>q</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://wilkelab.org/cowplot/reference/ggdraw.html'>ggdraw</a></span><span class='op'>(</span><span class='va'>p</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'><a href='https://wilkelab.org/cowplot/reference/draw_image.html'>draw_image</a></span><span class='op'>(</span><span class='fu'>here</span><span class='fu'>::</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>"joycloud.png"</span><span class='op'>)</span>, x <span class='op'>=</span> <span class='fl'>.125</span>, y <span class='op'>=</span> <span class='fl'>.265</span>, hjust <span class='op'>=</span> <span class='fl'>0</span>, vjust <span class='op'>=</span> <span class='fl'>0</span>, width <span class='op'>=</span> <span class='fl'>0.25</span>, height <span class='op'>=</span> <span class='fl'>0.15</span><span class='op'>)</span> <span class='op'>+</span>
+ <span class='fu'><a href='https://wilkelab.org/cowplot/reference/draw_image.html'>draw_image</a></span><span class='op'>(</span><span class='fu'>here</span><span class='fu'>::</span><span class='fu'><a href='https://here.r-lib.org//reference/here.html'>here</a></span><span class='op'>(</span><span class='st'>"sadcloud.png"</span><span class='op'>)</span>, x <span class='op'>=</span> <span class='fl'>.48</span>, y <span class='op'>=</span> <span class='fl'>.12</span>, hjust <span class='op'>=</span> <span class='fl'>0</span>, vjust <span class='op'>=</span> <span class='fl'>0</span>, width <span class='op'>=</span> <span class='fl'>0.37</span>, height <span class='op'>=</span> <span class='fl'>0.37</span><span class='op'>)</span>
+
+<span class='fu'>ggsave</span><span class='op'>(</span><span class='st'>"sad_games.png"</span>, plot <span class='op'>=</span> <span class='va'>q</span>, width <span class='op'>=</span> <span class='fl'>30</span>, height <span class='op'>=</span> <span class='fl'>26</span>, units <span class='op'>=</span> <span class='st'>"in"</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
@@ -2702,10 +1690,7 @@ function init_posts_list() {
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
 <!--radix_placeholder_appendices-->
-<div class="appendix-bottom">
-<h3 id="reuse">Reuse</h3>
-<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
-</div>
+<div class="appendix-bottom"></div>
 <!--/radix_placeholder_appendices-->
 <!--radix_placeholder_navigation_after_body-->
 <!--/radix_placeholder_navigation_after_body-->
