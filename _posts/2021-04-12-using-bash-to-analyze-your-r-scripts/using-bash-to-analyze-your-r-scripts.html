@@ -1498,7 +1498,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p>The <code>sed</code> command is <code>s/"//g</code>. The <code>s</code> means we want to make a substitution. We want to substitute all quotation marks with nothing, i.e., delete all quotation marks. Between the first two slashes we provide the pattern for <code>sed</code> to find, in our case, a quotation mark. Between the second and third slash we provide the replacement, in our case, nothing, so there is nothing between the second and third slash. After the third slash we tell <code>sed</code> where to perform the substitution, in our case that is throughout all the search results, so we use <code>g</code>, which I think means global.</p>
 <h3 id="write-to-file">write to file</h3>
 <p>Finally, we want our results written into a text document, so we use <code>&gt;</code> instead of <code>|</code> to write our results into a new file called <code>my_colors.txt</code>.</p>
-<p>Then we can import that file into R suing <code>read_lines()</code> and count our use of each hexcode.</p>
+<p>Then we can import that file into R using <code>read_lines()</code> and count our use of each hexcode.</p>
 <h3 id="dont-forget">Don’t forget</h3>
 <p>The whole command is:<br />
 <code>grep -Eroh --include="*.Rmd" --include="*.R" "\"#[a-zA-Z0-9]{6}\"" . | sort | sed 's/"//g' &gt; my_colors.txt</code></p>

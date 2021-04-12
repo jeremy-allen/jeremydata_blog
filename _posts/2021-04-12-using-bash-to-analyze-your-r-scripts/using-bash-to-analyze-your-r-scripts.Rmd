@@ -50,7 +50,7 @@ The `sed` command is `s/"//g`. The `s` means we want to make a substitution. We 
 
 Finally, we want our results written into a text document, so we use `>` instead of `|` to write our results into a new file called `my_colors.txt`.  
 
-Then we can import that file into R suing `read_lines()` and count our use of each hexcode.
+Then we can import that file into R using `read_lines()` and count our use of each hexcode.
 
 ### Don't forget
 
