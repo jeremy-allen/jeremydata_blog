@@ -12,7 +12,7 @@ output:
     self_contained: false
 categories:
   - rowwise
-  - tidyvere
+  - tidyverse
   - data.table
 ---
 
@@ -21,7 +21,7 @@ categories:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# PROBLEM: Add a column that indicates if a row has more 1s than 0s, use 1 if true, 0 if false, but only consider specific columns and allow for NAs.
+## PROBLEM: Add a column that indicates if a row has more 1s than 0s, use 1 if true, 0 if false, but only consider specific columns and allow for NAs.
 
 This question was asked on Twitter, and I want to elaborate on the solutions here.  
 
@@ -91,7 +91,7 @@ df
 
 This function only counts 1s and 0s, ignoring the 9 in row 4 and therefore giving us the correct answer in our new column. The function also returns a 1 if `TRUE` and a 0 if `FALSE`.  
 
-# library(tidyverse)
+## library(tidyverse)
 
 Let's try a tidyverse solution that uses `rowwise()` instead of `apply()`
 
@@ -121,7 +121,7 @@ tb %>%
 
 Here, `rowwise()` makes sure we are counting across rows, and `c_across()` lets us constrain which columns we consider, which is part of the problem we were asked to solve.  
 
-# library(data.table)
+## library(data.table)
 
 Using only data.table we don't have `rowwise()` from dplyr, so we use base R's `apply()` again. We use `.SD` and `.SDcols` to specify which columns we want to be constrained to.  
 
