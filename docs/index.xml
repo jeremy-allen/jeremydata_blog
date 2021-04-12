@@ -12,7 +12,20 @@
       <link>https://jeremydata.com</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 20 Mar 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 12 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Using Bash to Discover All Hex Codes in All of Your R Scripts</title>
+      <dc:creator>Jeremy Allen</dc:creator>
+      <link>https://jeremydata.com/posts/2021-04-12-using-bash-to-analyze-your-r-scripts</link>
+      <description>How to analyze all of your R and Rmarkdown files at once using the bash grep utility in a terminal</description>
+      <category>tidyverse</category>
+      <category>dataviz</category>
+      <category>bash</category>
+      <category>programming</category>
+      <guid>https://jeremydata.com/posts/2021-04-12-using-bash-to-analyze-your-r-scripts</guid>
+      <pubDate>Mon, 12 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://jeremydata.com/posts/2021-04-12-using-bash-to-analyze-your-r-scripts/grep_hexcodes.png" medium="image" type="image/png" width="1206" height="2024"/>
+    </item>
     <item>
       <title>Video Game Title Emotions - a text analysis</title>
       <dc:creator>Jeremy Allen</dc:creator>
