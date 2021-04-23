@@ -58,12 +58,3 @@ The whole command is:
 `grep -Eroh --include="*.Rmd" --include="*.R" "\"#[a-zA-Z0-9]{6}\"" . | sort | sed 's/"//g' > my_colors.txt`
 
 Check out the nice dataviz [Ijeamaka Anyene](https://twitter.com/ijeamaka_a/status/1379493271806771203?s=20) made!
-
-
-
-
-
-
-
-
-

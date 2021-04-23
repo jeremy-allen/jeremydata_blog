@@ -9,6 +9,13 @@
   font-weight: 500;
 }
 
+.distill-site-header .logo img {
+  display: none;
+  height: 60px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
 html, body, p {
   font-family: Roboto, Arial, sans-serif;
   background: #fff;
