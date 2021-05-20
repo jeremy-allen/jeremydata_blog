@@ -1,0 +1,123 @@
+---
+title: "Change multiple data frames inside a list"
+description: |
+  In R, how to change columns in multiple data frames inside a list using map() not lmap().
+author:
+  - name: Jeremy Allen
+    url: https://jeremydata.com
+date: 05-19-2021
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+ - tidyverse
+ - programming
+ - dplyr
+ - tidy evaluation
+---
+
+## The Problem: change a column in each data frame in a list of data frames.
+
+Or, you may say it like this. Given a list of data frames, apply a function to the same column in each data frame. Or like this. Iterate over list elements, which are data frames, and mutate the same column in each.
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+  
+Let's start by making a list of data frames.  
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+library(tidyverse)
+
+# for example data, make a list of data frames
+df_list <- list(
+ df1 = head(diamonds), # using head() so we only get first 10 rows
+ df2 = head(diamonds)
+)
+
+# inspect the structure of the list
+str(df_list)
+
+```
+  
+## The Solution  
+
+My strategy is to make a function that does the column mutation, and then use a tidyverse mapping function to apply my function to each list element. My function first.  
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# first make a function that will take a df and a column name then multiply that column by 1000
+multiply_column <- function(df, my_col) {
+ df %>% 
+  mutate("{{my_col}}" := {{my_col}} * 1000)
+}
+
+```
+
+Let's talk about this function. We know it must take a data frame and a column name as its arguments. When we use it later, by applying it to list elements, which are data frames, at each position in that list, my function must take the data frame at that position, mutate one of its columns, then move on to the data frame in the list.
+
+Imagine we are at the first data frame in the list. My function will
+
+- take that data frame, `df`, and a column name supplied by the user, `my_col`
+
+- access the column by its name, which is stored in the `my_col` argument
+
+- change, or mutate, that column by multiplying it by 1000
+
+- return the changed data frame
+
+We are using tidyverse functions and syntax here. Tidyverse uses unquoted column names, and the column names do not have to be preceded by `$` as in base R, like `diamonds$carart`.  We can refer to `carat` by itself with no quotes when giving that column name as one of the arguments to my function, `multiply_column(df = diamonds, my_col = carat)`. Then inside the function, we have to refer to the `my_col` argument with some special syntax to access the column name we put in it. We wrap `my_col` in double curly braces. When we do that inside `mutate()`, on the left-hand side of the `=` we also wrap it in quotes, and we use a particular version of the `=` sign, `:=`. This special syntax, a result of tidy evaluation, is explained more in the article [Programming with dplyr](https://dplyr.tidyverse.org/articles/programming.html).  
+
+Now that we have my column-mutating function set up, we need another function that will use it on each element of a list. The `map()` function does just that, and it will return a list. We give it a list of data frames and we get back a list of data frames.  
+
+The main arguments to `map()` are `.x` and `.f`. Any named arguments listed after those two will be arguments intended for the function you provide in `.f`. So here, `my_col = carat`, is not an argument for `map()` in the usual way, it is an argument that `map()` will give to my function `multiply_column()`.  
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# apply my function to each data frame in the list of data frames
+new_list <- map(
+ .x = df_list,
+ .f = multiply_column,
+ my_col = carat
+)
+
+# inspect the structure of the new list
+str(new_list)
+
+```
+
+## We did it!
+
+We can see that my column-mutation function worked on each data frame in the list. The values in both carat columns have been multiplied by 1000.
+
+- first, we made a function that would work on a single data frame
+
+- then, we applied that function to each data frame in a list 
+
+## Why didn't we use lmap()?
+
+Consider a passenger train with three cars carrying passengers plus an engine car at the front, so 4 cars total. We want to access a fancy dining table in car 2 so that we can repaint it. 
+
+- Car and table: we can isolate car 2, ending up with the car with our table inside it, but we cannot repaint the table until we get inside
+
+- Table itself: we can teleport ourselves inside car 2 directly to the table so we can repaint it
+
+```{r echo=TRUE, message=FALSE, warning=FALSE, paged.print=FALSE}
+
+# car and table, i.e., we end up with position 2 in the list but not
+# directly with the asset that is inside position 2
+# NOTICE the $df2 that prints before the data frame here
+df_list[2]
+
+# table itself, i.e., we've gone to position 2 in the list plus got
+# our hands directly on the data frame that is in position 2
+# NOTICE here we get just the data frame itself without the list position
+df_list[[2]]
+
+```
+
+**The `lmap()` function accesses list positions like option one. We get the train car we want but not immediate direct access to the table inside.**  
+
+**The `map()` function accesses assets inside list positions like option two. We teleport inside car 2 and have direct access to the table so we can repaint it.** 
