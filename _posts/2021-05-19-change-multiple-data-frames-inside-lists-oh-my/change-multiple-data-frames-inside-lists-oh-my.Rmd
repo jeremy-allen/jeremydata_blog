@@ -2,6 +2,7 @@
 title: "Change multiple data frames inside a list"
 description: |
   In R, how to change columns in multiple data frames inside a list using map() not lmap().
+preview: map_function.png 
 author:
   - name: Jeremy Allen
     url: https://jeremydata.com
