@@ -6,14 +6,14 @@
       "description": "R programming for meaningful data analysis and data visualization\n",
       "author": [],
       "contents": "\n\n\n\nFigure 1: image by Jeremy Allen | Copyrighted\n\n\n\nBio\nAt the intersection of decision-making, social research, and software I use R and Shiny applications to create meaning from data. I am a self-taught R programmer, formally educated in sociology, philosophy, religion, photography, and national security intelligence. Government leaders, social science researchers, and business leaders appreciate that I understand their needs. Software teams appreciate that I understand their needs. I usually find myself helping the two know each other.\nAfter 9/11 I started my career as a U.S. Army intelligence analyst focused on North Korea, which quickly shifted to researching al-Qaeda’s ideology, propaganda, and recruiting. This expanded to violent social movements around the world and inside the U.S., focusing on how features of one’s biography and social-political environment can make violence appear to be an acceptable solution to problems.\nRealizing that a degree in religion was insufficient, I returned to school full-time as an adult student in 2011 to study sociology and philosophy and worked occasionally as a professional photographer and commercial image retoucher. By 2016, I was teaching myself the R programming language and began my first job as an R programmer in a technology company.\nI have since worked on a variety of projects, from predicting late invoice payments, prototyping a topic-modeling Shiny app that helps social scientists analyze public opinion, dashboarding time-series and spatial distributions of conflict events, building a Shiny app for the Air Force that analyzes server logs, writing R scripts that automate web scraping and document retrieval, to consulting with corporate data leaders about data strategy and data culture.\nContact\nTweet me @jeremy_data\nCode on GitHub\n\n\n\n\n\n\n",
-      "last_modified": "2021-04-23T15:18:12-04:00"
+      "last_modified": "2021-05-20T11:53:26-04:00"
     },
     {
       "path": "index.html",
       "title": "Blog posts",
       "author": [],
       "contents": "\n\n\n\n\n",
-      "last_modified": "2021-04-23T15:18:13-04:00"
+      "last_modified": "2021-05-20T11:53:27-04:00"
     }
   ],
   "collections": ["posts/posts.json"]
